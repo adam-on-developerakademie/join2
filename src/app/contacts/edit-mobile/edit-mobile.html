@@ -1,0 +1,125 @@
+<!-- MOBILE EDIT OVERLAY: zentriert mit Backdrop -->
+ @if(getShowEditContact()){
+<div class="mobile-edit-backdrop" [class.closing]="isClosing" (click)="closeOverlay()">
+  <div class="contact-edit-mobile" [class.closing]="isClosing" (click)="$event.stopPropagation()">
+
+    <!-- Top dark panel -->
+    <section class="panel-dark">
+      <h1>Edit contact</h1>
+      <span class="divider"></span>
+    </section>
+
+    <!-- Avatar -->
+    <div class="avatar" [style.background]="editedContact.color">
+      <span>{{ editedContact.name.substring(0, 1).toUpperCase() + editedContact.surname.substring(0, 1).toUpperCase() }}</span>
+    </div>
+
+    <!-- Form -->
+    <form class="form-fields" #f="ngForm" novalidate>
+      <div class="field-wrapper">
+        <label class="field">
+          <input 
+            type="text" 
+            [(ngModel)]="editedContact.name" 
+            name="name" 
+            placeholder="Name" 
+            required 
+            #nameInput="ngModel"
+            [class.invalid]="nameInput.invalid && nameInput.touched" />
+          <span class="icon i-person"><img src="assets/img/person-icon.svg" alt="Person Icon" /></span>
+        </label>
+        <div class="validation-message">
+          @if (nameInput.invalid && nameInput.touched) {
+            @if (nameInput.errors?.['required']) {
+              <span>Name ist ein Pflichtfeld.</span>
+            }
+          } @else if (nameInput.touched && hasInvalidCapitalization(editedContact.name)) {
+            <span>Der erste Buchstabe muss groß geschrieben werden.</span>
+          }
+        </div>
+      </div>
+
+      <div class="field-wrapper">
+        <label class="field">
+          <input 
+            type="text" 
+            [(ngModel)]="editedContact.surname" 
+            name="surname" 
+            placeholder="Surname" 
+            required 
+            #surnameInput="ngModel"
+            [class.invalid]="surnameInput.invalid && surnameInput.touched" />
+          <span class="icon i-person"><img src="assets/img/person-icon.svg" alt="Person Icon" /></span>
+        </label>
+        <div class="validation-message">
+          @if (surnameInput.invalid && surnameInput.touched) {
+            @if (surnameInput.errors?.['required']) {
+              <span>Nachname ist ein Pflichtfeld.</span>
+            }
+          } @else if (surnameInput.touched && hasInvalidCapitalization(editedContact.surname)) {
+            <span>Der erste Buchstabe muss groß geschrieben werden.</span>
+          }
+        </div>
+      </div>
+
+      <div class="field-wrapper">
+        <label class="field">
+          <input 
+            type="email" 
+            [(ngModel)]="editedContact.email" 
+            name="email" 
+            placeholder="Email" 
+            required 
+            email
+            #emailInput="ngModel"
+            [class.invalid]="emailInput.invalid && emailInput.touched" />
+          <span class="icon i-mail"><img src="assets/img/mail-icon.svg" alt="Mail Icon" /></span>
+        </label>
+        <div class="validation-message">
+          @if (emailInput.invalid && emailInput.touched) {
+            @if (emailInput.errors?.['required']) {
+              <span>Email ist ein Pflichtfeld.</span>
+            } @else if (emailInput.errors?.['email']) {
+              <span>Bitte geben Sie eine gültige Email-Adresse ein.</span>
+            }
+          } @else if (emailInput.touched && hasInvalidEmailFormat(editedContact.email)) {
+            <span>Email muss das Format name@domain.endung haben.</span>
+          }
+        </div>
+      </div>
+
+      <div class="field-wrapper">
+        <label class="field">
+          <input 
+            type="tel" 
+            [(ngModel)]="editedContact.phone" 
+            name="phone" 
+            placeholder="Phone" 
+            #phoneInput="ngModel"
+            [class.invalid]="(phoneInput.invalid && phoneInput.touched) || (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone))" />
+          <span class="icon i-call"><img src="assets/img/call_with_background.svg" alt="Call Icon" /></span>
+        </label>
+        <div class="validation-message">
+          @if (phoneInput.touched && hasInvalidPhoneFormat(editedContact.phone)) {
+            <span>Telefonnummer muss mind. 6 Ziffern lang sein.</span>
+          }
+        </div>
+      </div>
+    </form>
+
+    <!-- Action Buttons -->
+    <div class="buttons">
+      <button class="btn-delete" type="button" (click)="delContact()">Delete</button>
+      <button class="btn-save" type="button" (click)="upContact()" [disabled]="!isFormValid(f)">
+        <span>Save</span>
+        <span class="icon-check" > <img src="assets/img/check.svg" alt="Check" /></span>
+      </button>
+    </div>
+
+    <!-- Close icon (unsichtbare Klickfläche wie Figma) -->
+    <button class="btn-close" type="button" aria-label="Close" (click)="closeOverlay()">
+      <img src="assets/img/close.png" alt="Close">
+    </button>
+  </div>
+</div>
+ }

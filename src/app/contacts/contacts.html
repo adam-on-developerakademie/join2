@@ -1,1 +1,119 @@
-<p>contacts works!</p>
+<div class="contacts-canvas">
+  <div class="list-panel">
+    <div class="list-panel__inner">
+      <div class="primary-contact-container">
+        <button class="primary-contact" (click)="showContactOverlay()">
+          <span>Add new contact</span>
+          <img src="assets/components/contacts/add_contact.svg" alt="" />
+        </button>
+      </div>
+      <div class="contacts-list" [class.dnone]="getContactlistHidden()">
+        <div class="contacts-list-center">
+          @for (group of getContactsGroups(); track group) {
+          <p class="letter">{{ group }}</p>
+          <div class="divider"></div>
+
+          @for (item of getContacts(); track item) { @if (item.name.charAt(0).toUpperCase() == group) {
+          <div class="contact-row" (click)="showContact($index)">
+            <div class="badge">
+              <div class="badge__circle" [style.background]="item.color"></div>
+              <div class="badge__initials">
+                {{ item.name.substring(0, 1).toUpperCase() + item.surname.substring(0, 1).toUpperCase() }}
+              </div>
+            </div>
+            <div class="contact-row__text">
+              <div class="name">{{ item.name + ' ' + item.surname }}</div>
+              <div class="mail">{{ item.email }}</div>
+            </div>
+          </div>
+          } } }
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="detail-panel">
+    <div class="heading">
+      <h1>Contacts</h1>
+      <img src="assets/components/contact-card/heading_blue_line.svg" class="blue-line" alt="" />
+      <p>Better with a team</p>
+    </div>
+  </div>
+
+
+  <section class="contactMobileList" [class.dnone]="!getContactlistHidden()">
+
+    <div class="detail-panel-mobile">
+      <div class="panel-width">
+        <div class="heading-mobile">
+          <div class="heading-mobile-title">
+            <h1>Contacts</h1>
+            <p>Better with a team</p>
+          </div>
+          <img src="assets/components/contact-card/heading_blue_line.svg" class="blue-line" alt="" />
+        </div>
+
+
+
+        <div class="detail-panel-mobile-content">
+          <div class="name">
+            <span class="avatar-container">
+              <span class="avatar-circle" [style.background]="currentContact.color">
+                <span class="avatar-initials">{{currentContactInitials}}</span>
+              </span>
+            </span>
+            <div>
+              <span class="contact-name">{{ getCurrentContact().name }} </span>
+              <span class="contact-name">{{ getCurrentContact().surname }} </span>
+            </div>
+            <p>.                                  .</p>
+            <div class="section-title">Contact Information
+              <div class="detail-group">
+                <label class="detail-label">Email</label>
+                <a href="mailto:{{getCurrentContact().email }}" class="email-link">{{ getCurrentContact().email }}</a>
+              </div>
+              <div class="detail-group">
+                <label class="detail-label">Phone</label>
+                <span class="phone-number">{{ getCurrentContact().phone }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img class="go-back" src="assets/img/arrow-left-line.svg" alt="go back" (click)="closeMobileContact()"
+        [class.dnone]="!getContactlistHidden()" />
+    </div>
+  <div class="contact-edit-activation">
+
+  <!-- FAB -->
+  <button class="fab" (click)="toggleOptions()" aria-label="More">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <circle cx="5" cy="12" r="2" fill="#ffffff" />
+      <circle cx="12" cy="12" r="2" fill="#ffffff" />
+      <circle cx="19" cy="12" r="2" fill="#ffffff" />
+    </svg>
+  </button>
+
+  <!-- Options: inline an den FAB angedockt -->
+  <div class="options-anchor" *ngIf="showOptions">
+    <app-mobile-menu [inline]="true" [contactId]="fbService.id.toString()" (close)="showOptions=false" (edit)="onEdit()"
+      (delete)="onDelete()">
+    </app-mobile-menu>
+  </div>
+
+  <!-- Sichtbar je nach Media-Query -->
+  <app-edit-mobile *ngIf="fbService.showEditContact"></app-edit-mobile>
+</div>
+  </section>
+
+
+</div>
+
+<app-created [show]="toastOpen"></app-created>
+
+@if (showAddContact) {
+<app-add-desktop (close)="onCloseOverlay()" (created)="onContactCreated()"></app-add-desktop>
+<app-add-mobile (close)="onCloseOverlay()" (created)="onContactCreated()"></app-add-mobile>
+}
+<app-details-card></app-details-card> 

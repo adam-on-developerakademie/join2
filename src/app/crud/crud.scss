@@ -6,7 +6,8 @@
     justify-content: center;
     margin-top: 400px;
     margin-bottom: 100px;
-    margin-left: 400px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 500px;
     height: 500px;
     background-color: #ebffab;
