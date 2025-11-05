@@ -292,7 +292,7 @@ h1 {
     font-weight: 400;
 
     .input-icon::before {
-      content: url('/assets/img/x-vector-icon-only.svg');
+      content: url('/assets/img/contacts/edit-desktop/x-vector-icon-only.svg');
     }
 
     &:hover {
@@ -305,7 +305,7 @@ h1 {
       }
 
       .input-icon::after {
-        content: url('/assets/img/x-vector-blue-icon-only.svg');
+        content: url('/assets/img/contacts/edit-desktop/x-vector-blue-icon-only.svg');
       }
 
     }

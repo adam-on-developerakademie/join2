@@ -348,7 +348,7 @@ $--panel-dark-correction: 33px;
 
 @media (max-height: 1000px) {
   .contact-edit-mobile {
-    scrollbar-width: auto;
+    scrollbar-width: none;
     overflow-y: scroll;
   }
 
