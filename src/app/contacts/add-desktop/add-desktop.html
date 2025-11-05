@@ -36,10 +36,10 @@
           <div class="validation-message">
             @if (nameInput.invalid && nameInput.touched) {
             @if (nameInput.errors?.['required']) {
-            <span>Name ist ein Pflichtfeld.</span>
+            <span>Name is a required field.</span>
             }
             } @else if (nameInput.touched && hasInvalidCapitalization(contact.name)) {
-            <span>Der erste Buchstabe muss groß geschrieben werden.</span>
+            <span>The first letter must be capitalized.</span>
             }
           </div>
         </div>
@@ -57,10 +57,10 @@
           <div class="validation-message">
             @if (surnameInput.invalid && surnameInput.touched) {
             @if (surnameInput.errors?.['required']) {
-            <span>Nachname ist ein Pflichtfeld.</span>
+            <span>Last name is a required field.</span>
             }
             } @else if (surnameInput.touched && hasInvalidCapitalization(contact.surname)) {
-            <span>Der erste Buchstabe muss groß geschrieben werden.</span>
+            <span>The first letter must be capitalized.</span>
             }
           </div>
         </div>
@@ -79,10 +79,10 @@
             @if (emailInput.errors?.['required']) {
             <span>Email ist ein Pflichtfeld.</span>
             } @else if (emailInput.errors?.['email']) {
-            <span>Bitte geben Sie eine gültige Email-Adresse ein.</span>
+            <span>Please enter a valid email address.</span>
             }
             } @else if (emailInput.touched && hasInvalidEmailFormat(contact.email)) {
-            <span>Email muss das Format name@domain.endung haben.</span>
+            <span>Email must be in the format name@domain.extension.</span>
             }
           </div>
         </div>
@@ -99,7 +99,7 @@
           <!-- Reserved space for validation message -->
           <div class="validation-message">
             @if (phoneInput.touched && hasInvalidPhoneFormat(contact.phone)) {
-            <span>Telefonnummer muss mind. 6 Ziffern lang sein (+ am Anfang erlaubt).</span>
+            <span>The phone number must be at least 6 digits long.</span>
             }
           </div>
         </div>

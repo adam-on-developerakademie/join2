@@ -209,12 +209,12 @@ $--panel-dark-correction: 25px;
 .validation-message {
   min-height: 14px;
   /* Sehr kleine Höhe */
-  padding: 1px 3px 0;
+  padding: 1px 0px 0;
   display: flex;
   align-items: flex-start;
 
   span {
-    font-size: 15px;
+    font-size: 14px;
     /* Extra kleine Schrift */
     color: #FF8190;
     font-weight: 400;
