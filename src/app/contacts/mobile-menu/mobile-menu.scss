@@ -13,10 +13,12 @@
 
 /* Panel – kann im Overlay oder inline benutzt werden */
 .panel {
-  width: 116px; /* Figma */
+  width: 116px;
+  /* Figma */
   background: #ffffff;
   border-radius: 20px 20px 0 20px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); /* "stronger" */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  /* "stronger" */
   padding: 10px;
   display: grid;
   gap: 8px;
@@ -24,19 +26,28 @@
   /* Wenn im Overlay gerendert, unten rechts am Bildschirm andocken */
   .overlay & {
     position: absolute;
-    right: 16px;
-    bottom: calc(96px + 56px + 12px); /* gleiche Position wie Inline-Anker */
+    right: 5px;
+    bottom: 110px;
+    //bottom: calc(96px + 56px + 12px + 20px);
+    /* gleiche Position wie Inline-Anker */
     z-index: 4550;
   }
-  animation: slideIn 0.15s ease !important;
+
+  
+
+  animation-timing-function: ease-out;
+  animation-duration: 300ms;
+  animation: slideIn 0.30s ease !important;
+
 }
 
 @keyframes slideIn {
   from {
-    transform: translateY(100%);
+    transform: translateX(100%);
   }
+
   to {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -53,6 +64,7 @@
   font-size: 16px;
   border-radius: 10px;
 }
+
 .row:hover {
   background: #f6f7f8;
 }

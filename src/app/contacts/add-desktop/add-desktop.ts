@@ -24,7 +24,6 @@ export class AddDesktop {
   /** Kontakt speichern */
   addContact() {
     this.fbService.addContact(this.contact);
-    console.log('Contact added:', this.contact);
     this.clearInput();
   }
 
