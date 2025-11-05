@@ -47,7 +47,7 @@ export class FbService {
       this.contactsArray = filtered;
       this.currentContact = filtered[0];
       this.setCurrentContact(this.id);
-      console.log(this.id, this.contactsArray, this.currentContact);
+      //console.log(this.id, this.contactsArray, this.currentContact);
     });
 
     this.myData = onSnapshot(this.dataCollection, (snapshot) => {
@@ -64,7 +64,7 @@ export class FbService {
       email: email,
       phone: phone
     };
-    console.log(this.contact);
+    //console.log(this.contact);
     this.addContact(this.contact);
   }
 
