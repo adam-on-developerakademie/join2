@@ -47,7 +47,6 @@ export class EditMobile {
   }
 
   upContact() {
-    console.log(this.editedContact);
     this.fbService.updateContact(this.fbService.id, this.editedContact);
     this.onClose();
     this.isClosing = false;

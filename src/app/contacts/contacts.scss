@@ -268,7 +268,18 @@ div.contact-row:active {
     justify-content: center;
     align-items: center;
 
+    &:active {
+      border-radius: 50%;
+      background-color: #0C2E621F;
+      img {
+        transform: scale(1.2);
+      }
 
+    }
+
+
+    //Bjorn fragen!!!>>>live server pfad OK auf DA kann nicht gefunden werden  
+    /* 
     &::before {
       content: "";
       display: block;
@@ -299,6 +310,8 @@ div.contact-row:active {
         background-position: center;
       }
     }
+ */
+
   }
 
   .panel-width {
