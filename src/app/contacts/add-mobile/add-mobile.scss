@@ -265,16 +265,6 @@ $--panel-dark-correction: 33px;
   span {
     flex-shrink: 0;
   }
-
-  &:disabled {
-    background: #d1d1d1;
-    color: #999999;
-    cursor: not-allowed;
-
-    .icon-check {
-      background: #999999;
-    }
-  }
 }
 
 .icon-check {

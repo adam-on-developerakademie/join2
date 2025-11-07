@@ -22,8 +22,29 @@ export class AddMobile {
   isClosing = false;
   constructor(private fbService: FbService) { }
 
+  /** Button-Handler für Create Contact - führt Validierung durch und speichert wenn gültig */
+  onCreateContactClick(form: any) {
+    // Alle Felder als touched markieren, um Validierungsfehler anzuzeigen
+    this.markAllFieldsAsTouched(form);
+
+    // Nur speichern wenn Formular gültig ist
+    if (this.isFormValid(form)) {
+      this.addContact();
+    }
+    // Wenn ungültig, bleiben die Validierungsmeldungen durch markAsTouched sichtbar
+  }
+
+  /** Alle Formularfelder als touched markieren */
+  private markAllFieldsAsTouched(form: any) {
+    if (form && form.controls) {
+      Object.keys(form.controls).forEach(key => {
+        form.controls[key].markAsTouched();
+      });
+    }
+  }
+
   /** Kontakt speichern */
-  addContact() {
+  private addContact() {
     this.fbService.addContact(this.contact);
     this.clearInput();
     this.created.emit();
