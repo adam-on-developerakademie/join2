@@ -40,6 +40,8 @@ body {
   font-family: Inter, system-ui, Arial, sans-serif;
   color: #000;
   scroll-behavior: smooth;
+  /* Prevent unwanted scrollbars during animations */
+  overflow-x: hidden;
 }
 img {
   max-width: 100%;

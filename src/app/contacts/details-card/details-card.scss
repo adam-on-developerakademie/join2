@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+  padding: 20px;
   gap: 21px;
   position: absolute;
   height: calc(100vh - 320px);
@@ -14,18 +14,22 @@
   top: 311px;
   background-color: #f6f7f8;
   border-radius: 8px;
-  padding: 20px;
   animation: slideIn 0.15s ease !important;
   overflow: hidden;
+  /* Prevent scrollbars during animation */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes slideIn {
   from {
     transform: translateX(100%);
+    opacity: 0;
   }
 
   to {
     transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -323,15 +327,17 @@
 
 .slideInFromRight {
   display: none;
-  animation: slideIn 0.2s ease !important;
+  animation: slideInRight 0.5s ease !important;
 
-  @keyframes slideIn {
+  @keyframes slideInRight {
     from {
       transform: translateX(100%);
+      opacity: 0;
     }
 
     to {
       transform: translateX(0);
+      opacity: 1;
     }
   }
 }
