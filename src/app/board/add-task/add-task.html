@@ -1,0 +1,106 @@
+<div class="add-task-page">
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brand">Kanban Project Management Tool</div>
+      <div class="topbar__right">
+        <button class="help-btn" aria-label="Help" title="Help">
+          <span class="icon"></span>
+        </button>
+        <div class="user-initials">
+          <span class="circle">SM</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <aside class="sidenav">
+    <div class="sidenav__logo"></div>
+    <nav class="sidenav__menu">
+      <a class="nav-item" href="/summary"> <span class="nav-icon"></span><span>Summary</span> </a>
+      <a class="nav-item nav-item--active" aria-current="page">
+        <span class="nav-icon"></span><span>Add Task</span>
+      </a>
+      <a class="nav-item" href="/board"> <span class="nav-icon"></span><span>Board</span> </a>
+      <a class="nav-item" href="/contacts"> <span class="nav-icon"></span><span>Contacts</span> </a>
+    </nav>
+    <div class="sidenav__footer">
+      <a class="footer-link" href="/legal">Legal notice</a>
+      <a class="footer-link" href="/privacy">Privacy Policy</a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1 class="page-title">Add Task</h1>
+
+    <div class="form-grid">
+      <section class="col left-col">
+        <div class="field">
+          <label class="label">Title*</label>
+          <div class="input">
+            <input type="text" placeholder="Enter a title" />
+          </div>
+          <div class="hint hint--error hide-on-empty">*This field is required</div>
+        </div>
+
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="textarea">
+            <textarea placeholder="Enter a Description"></textarea>
+            <span class="dots"></span>
+          </div>
+          <div class="hint hide-on-empty"></div>
+        </div>
+
+        <div class="field">
+          <label class="label">Due date*</label>
+          <div class="input input--with-icon">
+            <input type="text" placeholder="dd/mm/yyyy" />
+            <span class="calendar"></span>
+          </div>
+          <div class="hint hint--error hide-on-empty">*This field is required</div>
+        </div>
+      </section>
+
+      <div class="divider-vert"></div>
+
+      <section class="col right-col">
+        <div class="field">
+          <label class="label">Priority</label>
+          <!-- TODO: dev logic -->
+          <!-- <app-priority-selector [(value)]="form.priority"></app-priority-selector> -->
+        </div>
+
+        <div class="field">
+          <label class="label">Assigned to</label>
+          <button class="select">
+            <span>Select contacts to assign</span>
+            <span class="caret"></span>
+          </button>
+        </div>
+
+        <div class="field">
+          <label class="label">Category*</label>
+          <button class="select">
+            <span>Select contacts to assign</span>
+            <span class="caret"></span>
+          </button>
+        </div>
+
+        <div class="field">
+          <label class="label">Subtasks</label>
+          <div class="input">
+            <input type="text" placeholder="Add new subtask" />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn btn--secondary desktop-only">Cancel</button>
+      <button type="button" class="btn btn--primary">
+        <span>Create Task</span>
+        <i class="check"></i>
+      </button>
+    </div>
+  </main>
+</div>
