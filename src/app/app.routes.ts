@@ -1,16 +1,17 @@
 import { Routes } from '@angular/router';
-import { crud } from  './crud/crud';
+import { crud } from './crud/crud';
 import { Contacts } from './contacts/contacts';
 import { Board } from './board/board';
+import { BoardCard } from './board/board-card/board-card';
 
 export const routes: Routes = [
-     { path: '', component: Contacts },
+  { path: '', component: Contacts },
   { path: 'summary', redirectTo: '', pathMatch: 'full' },
   { path: 'contacts', component: Contacts },
-  { path: 'board', component: crud },
   { path: 'crud', component: crud },
- // { path: 'addc', component: AddContactComponent },
-  
- { path: 'sprint2demo', component: Board },
+  // { path: 'addc', component: AddContactComponent },
 
+  // SPRINT 2 DEMO
+  { path: 'sprint2-demo-board', component: Board },
+  { path: 'sprint2-demo-card', component: BoardCard },
 ];
