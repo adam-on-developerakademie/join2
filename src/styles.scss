@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'styles/fonts';
+
 :root {
   --bg: #f6f7f8;
   --topbar-bg: #ffffff;
@@ -106,6 +107,6 @@ img {
 html,
 body {
   min-height: 100dvh;
-    font-family: 'Inter';
-    font-size:14px;
+  font-family: 'Inter';
+  font-size: 14px;
 }
