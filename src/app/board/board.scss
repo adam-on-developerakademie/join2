@@ -4,15 +4,17 @@
 @use '../../styles/themes' as *;
 
 .board-page {
-  width: 100dvw;
-  overflow-y: auto;
+  width: 1200px;
   position: relative;
 
   .board-content {
+    width: 1440px;
+    height: 100dvh;
     padding-left: 232px;
     padding-top: 96px;
 
     .board-head {
+      height: 232px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -88,19 +90,23 @@
       }
     }
     .col-head-wrap {
+      position: absolute;
       width: 100%;
+      top: 300px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      // justify-content: space-between;
+      // align-items: center;
       padding: 0 60px;
-      gap: 24px;
-      .column-header {
-        width: 1440px;
+      gap: 32px;
+      // gap: 24px;
 
+      .column-header {
         height: 24px;
+        width: 244px;
         display: flex;
-        justify-content: space-between;
+        // flex-direction: column;
         align-items: center;
+        justify-content: space-between;
         h2 {
           font: 700 20px/120% Inter, sans-serif;
           color: var(--gray-medium);
@@ -131,6 +137,7 @@
     }
   }
   .board-columns {
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: space-between;
@@ -145,21 +152,25 @@
       align-items: center;
       padding: 0;
       gap: 10px;
-      width: 252px;
-      height: 48px;
+      padding: 1px 1px;
+      width: 240px;
+      height: 46px;
       background: var(--gray-bg);
-      border: 1px dashed var(--gray-silver);
+      border: 2px dashed var(--gray-silver);
       border-radius: 10px;
-      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 0px 4px var(--gray-silver) (0, 0, 0, 0.16);
       color: var(--gray-light);
       font-size: 16px;
     }
-    .columns-wrap {
-      width: 100%;
+    .col-wrap {
+      left: 0;
+      padding: 0 60px;
+      width: 1192px;
       display: flex;
-      justify-content: center;
-      align-items: space-between;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 32px;
+      //      gap: 24px;ss
       .column {
         position: relative;
         width: 244px;

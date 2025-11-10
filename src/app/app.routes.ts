@@ -13,7 +13,7 @@ export const routes: Routes = [
   // { path: 'addc', component: AddContactComponent },
 
   // SPRINT 2 DEMO
-  { path: 'sprint2-demo-board', component: Board },
+  { path: 'board', component: Board },
   { path: 'sprint2-demo-card', component: BoardCard },
   { path: 'sprint2-demo-add', component: AddTask },
 ];

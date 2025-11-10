@@ -3,13 +3,12 @@
 }
 
 .card-wrap {
-  //just for demo sprint 2
-  //TODO: add hard coded columns to board
+  position: relative;
   background-color: var(--bg);
-  height: 50dvh;
   display: flex;
   justify-content: center;
   align-items: center;
+  bottom: 64px;
 }
 
 .card {
