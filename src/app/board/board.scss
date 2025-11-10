@@ -1,5 +1,10 @@
+@use '../../styles/fonts' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/themes' as *;
+
 :root {
-  --bg: #f6f7f8;
+  // --bg: #f6f7f8;
   --dark: #2a3647;
   --blue: #29abe2;
   --gray: #a8a8a8;
