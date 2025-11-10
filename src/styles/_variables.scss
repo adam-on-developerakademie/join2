@@ -1,12 +1,30 @@
 // TODO: replace allover Application, remove duplicates, then reuse
 :root {
+  // #region figmaColours
+  // --bg
+  --gray-300: #f6f7f8;
+
+  // --ink
+  --black: #000000;
+
+  //  --white
+  --white: #ffffff;
+
+  // --ink-muted
+  --teal-dark: #2a3647;
+
+  // --muted
+  --gray-lighter: #cdcdcd;
+
+  // --blue
+  --cyan-medium: #29abe2;
+
   --blue-dark: #0038ff;
   --blue-light: #00bee8;
   --blue-navy: #091931;
   --blue-medium: #4589ff;
   --cyan-light: #1fd7c1;
-  --cyan-medium: #29abe2;
-  --teal-dark: #2a3647;
+
   --purple-dark: #462f8a;
   --purple-medium: #6e52ff;
   --purple-bright: #9327ff;
@@ -25,14 +43,14 @@
   --gray-medium-dark: #2a3647;
   --gray-medium: #42526e;
   --gray-light: #a8a8a8;
-  --gray-lighter: #cdcdcd;
+
   --gray-silver: #d1d1d1;
   --gray-fog: #d9d9d9;
   --gray-bg: #e7e7e7;
   --gray-100: #f4f4f4;
   --gray-200: #f5f5f5;
-  --gray-300: #f6f7f8;
-  --white: #ffffff;
-  --black: #000000;
+
   --blue-accent: #007cee;
+
+  // #endregion figmaColours
 }
