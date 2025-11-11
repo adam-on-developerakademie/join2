@@ -26,6 +26,8 @@ export class FbService {
   contactlistHidden = false;
   myWidth: number = window.innerWidth;
   id: number = 0;
+  i: number[] = [0];
+
   myData;
   data: any[] = [];
 
@@ -49,6 +51,7 @@ export class FbService {
       this.setCurrentContact(this.id);
       //console.log(this.id, this.contactsArray, this.currentContact);
     });
+
 
     this.myData = onSnapshot(this.dataCollection, (snapshot) => {
       this.data = snapshot.docs.map((doc) => doc.data());
@@ -76,9 +79,21 @@ export class FbService {
     await updateDoc(doc(this.contactsCollection, this.contactsArray[id].id), { ...contact });
   }
 
+  firstConnect() {
+    return Math.min(...this.i);
+  }
+
+  async updateOneField(id: string, field: string, value: number) {
+    console.log(id, field, value);
+    // this.i = this.i + 1;
+    //if (this.i > this.contactsArray.length + 1) { this.i = 0; } console.log(this.i, `Updating contact ${id}, setting ${field} to ${value}`);
+    //await updateDoc(doc(this.contactsCollection, this.contactsArray[id].id), { [field]: value });
+  }
+
   async delContact(id: number) {
     //this.contactsArray.splice(id, 1);
     this.contactsArray.length >= 0 ? await deleteDoc(doc(this.contactsCollection, this.contactsArray[id].id)) : null;
+    this.id = this.firstConnect();
   }
 
   onDestroy() {
@@ -122,7 +137,7 @@ export class FbService {
 
   refreshContactList() {
     setTimeout(() => {
-      
+
       this.contactlistHidden = true;
     }, 500);
   }

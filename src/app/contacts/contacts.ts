@@ -37,6 +37,7 @@ export class Contacts {
   getContacts() { return this.fbService.contactsArray; }
   getData() { return this.fbService.data; }
   getCurrentContact() { return this.fbService.currentContact; }
+  getActiveContactId(id: number) { return this.fbService.id === id ? true : false; }
 
 
   addContact() {
@@ -50,6 +51,12 @@ export class Contacts {
   upContact() {
     this.fbService.updateContact(this.id, this.contact);
     this.clearInput();
+  }
+
+  updatePositionIndex(id: string, field: string, value: number) {
+    this.fbService.i.push(value);
+    //if (Math.min(...this.fbService.i) === value) this.fbService.updateOneField(id, field, value);
+    //console.log(id, field, Math.min(...this.fbService.i));
   }
 
   delContact() {
