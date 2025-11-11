@@ -43,6 +43,8 @@ body {
   font-family: var(--font-family-base);
   color: #000;
   scroll-behavior: smooth;
+  /* Prevent unwanted scrollbars during animations */
+  overflow-x: hidden;
 }
 img {
   max-width: 100%;

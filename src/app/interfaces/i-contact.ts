@@ -1,5 +1,6 @@
 export interface IContact {
    id?: string;
+   positionIndex?: number;
    date?: string
    color?: string;
    ownerId?: string;

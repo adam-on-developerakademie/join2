@@ -1,0 +1,42 @@
+<div class="tasktest">
+  <h4>Neues Task:</h4>
+  <form (ngSubmit)="addTask()">
+    Title: <input name="title" [(ngModel)]="task.title" placeholder="Title" required><br>
+    Description: <input name="description" [(ngModel)]="task.description" placeholder="Description" required><br>
+    Due Date: <input name="dueDate" [(ngModel)]="task.dueDate" placeholder="Due Date" required><br>
+    Completed: <select name="completed" [(ngModel)]="task.completed" required>
+      <option [value]="true">completed</option>
+      <option [value]="false">not completed</option>
+    </select><br>
+    Priority: <select name="priority" [(ngModel)]="task.priority" required>
+      @for (option of priorityOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select><br>
+    Owner ID: <input name="ownerId" [(ngModel)]="task.ownerId" placeholder="Owner ID" required><br>
+    <button type="submit" [disabled]="!task.title">Add Task</button>
+  </form>
+
+
+
+  <p>My Tasks:</p>
+  @for (item of gettasks(); track item) {
+  <p>
+    dbid: {{ item.dbid }}<br>
+    Title: {{ item.title }}<br>
+    Description: {{ item.description }}<br>
+    Due Date: {{ item.dueDate }}<br>
+    Completed: {{ item.completed }}<br>
+    Priority: {{ item.priority }}<br>
+<!--     Status: {{ item.status }}<br>
+    Position Index: {{ item.positionIndex }}<br>
+    Owner ID: {{ item.ownerId }}<br>
+    Assign To: {{ item.assignTo }}<br>
+    Category Name: {{ item.category?.name }} <br>
+    Category Color: {{ item.category?.color }}<br>
+    SubTasks: {{ item.subTasks?.length }} items<br> -->
+  </p>
+  }
+
+
+</div>
