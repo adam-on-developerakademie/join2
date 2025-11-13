@@ -1,17 +1,15 @@
 export interface ITask {
     dbid?: string;
-    positionIndex?: number;
     createDate: string;
     ownerId: string;
+    completed: boolean;
+    dueDate: string;
+    status: string | 'to-do' | 'in-progress' | 'await-feedback' | 'done';
+    positionIndex: number;
+    category: { name: string; color: string };
     title: string;
     description: string;
-    dueDate: string;
-    completed: boolean;
-     priority: string | 'low' | 'medium' | 'high';
- /*   assignTo: string[];
-    category: { name: string; color: string };
+    assignTo: string[];
+    priority: string | 'low' | 'medium' | 'high';
     subTasks: ITask[];
-    status: string | 'to-do' | 'in-progress' | 'await-feedback' | 'done';
- */
-
 }[]

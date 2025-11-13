@@ -14,33 +14,48 @@ import { ITask } from '../interfaces/i-task';
 export class Tasktest {
 
   task: ITask = {} as ITask;
+  currentTask: ITask = {} as ITask;
   defaultPriority: string = 'low';
   priorityOptions: string[] = ['low', 'medium', 'high'];
+  columnIndex: number = 0;
 
-  constructor(public fbTaskService: FbTaskService) {}
+  constructor(public fbTaskService: FbTaskService) {
+
+    this.task = this.fbTaskService.newTask;
+    this.columnIndex = 0;
+    this.currentTask = {} as ITask;
+    console.log(this.currentTask, this.columnIndex);
+    
+    this.fbTaskService.currentTask = this.currentTask
+  }
+
+  gettasks() {
+    return this.fbTaskService.tasksArray.sort((a, b) => a.positionIndex - b.positionIndex);
+  }
+
+  addTask(newTask: ITask) {
+    newTask.createDate = new Date().toISOString();
+    this.fbTaskService.addTask(newTask);
+    this.task = this.fbTaskService.newTask;
+  }
+
+  async deleteTask(taskId?: string) {
+    await this.fbTaskService.deleteTask(taskId);
+  }
+
+  async updateTask() {
+    await this.fbTaskService.updateTask(this.currentTask.dbid, this.currentTask);
+  }
 
 
-gettasks() {
-  return this.fbTaskService.tasksArray;
-}
+  nextTask() {
+    if (!this.fbTaskService.tasksArray.length) return;
+    this.columnIndex = (this.columnIndex + 1) % this.fbTaskService.tasksArray.length;
+    this.currentTask = this.fbTaskService.tasksArray[this.columnIndex];
+    this.fbTaskService.currentTask = this.currentTask;
+    console.log(this.currentTask, this.columnIndex);
 
-addTask() {
-  const newTask: ITask = {
-    positionIndex: 0,
-    createDate: new Date().toISOString(),
-    ownerId: this.fbTaskService.getCurrentUserId(),
-    title: this.task.title,
-    description: this.task.description,
-    dueDate: this.task.dueDate,
-    completed: this.task.completed,
-    priority: this.task.priority || 'low',
-/*     assignTo: this.task.assignTo,
-    category: this.task.category,
-    subTasks: [],
-    status: 'to-do' */
-  };
-  this.fbTaskService.addTask(newTask);
-}
+  }
 
 
 }
