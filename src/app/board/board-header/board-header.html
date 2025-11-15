@@ -1,0 +1,18 @@
+<div class="board-header">
+  <h1>Board</h1>
+  <div class="tools">
+    <div class="search">
+      <input type="text" placeholder="Find Task" (input)="onSearch($event.target.value)" />
+      <button class="search-btn">
+        <div class="image-box" >
+          <img  class="activeOn" src="assets/img/board/board-header/search-blue.svg" alt="Search Button" />
+          <img  class="activeOff" src="assets/img/board/board-header/search.svg" alt="Search Button" />
+        </div>  
+      </button>
+    </div>
+    <button class="btn-add" (click)="addCard()">
+      Add task
+      <img src="assets/img/board/board-header/plus-button.svg" alt="Add Task Button" />
+    </button>
+  </div>
+</div>

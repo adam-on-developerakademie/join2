@@ -1,0 +1,11 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.board {
+    width: calc(1440px - 20px);
+    height: 100dvh;
+    margin-left: 232px;
+    padding-top: 96px;
+    border: 1px solid black;
+}
