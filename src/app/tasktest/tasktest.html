@@ -17,13 +17,20 @@
           <option [value]="option">{{ option }}</option>
           }
         </select></p>
+      <p class="inputField">15. Status: <select name="status" [(ngModel)]="task.status" required>
+          @for (option of statusOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+          }
+        </select></p>
       <button type="submit" [disabled]="!task.title">Add Task</button>
     </form>
+
     <form class="inputTask" (ngSubmit)="updateTask()">
       dbid: {{ currentTask.dbid }}<br>
       <p class="inputField">8. Position Index: <input name="positionIndex" [(ngModel)]="currentTask.positionIndex"
           placeholder="Position Index" required></p>
-      <p class="inputField">10. Title:<input name="title" [(ngModel)]="currentTask.title" placeholder="Title" required></p>
+      <p class="inputField">10. Title:<input name="title" [(ngModel)]="currentTask.title" placeholder="Title" required>
+      </p>
       <p class="inputField">11. Description: <input name="description" [(ngModel)]="currentTask.description"
           placeholder="Description" required></p>
       <p class="inputField">12. Due Date: <input name="dueDate" [(ngModel)]="currentTask.dueDate" placeholder="Due Date"
@@ -34,6 +41,11 @@
         </select></p>
       <p class="inputField">14. Priority: <select name="priority" [(ngModel)]="currentTask.priority" required>
           @for (option of priorityOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+          }
+        </select></p>
+      <p class="inputField">15. Status: <select name="status" [(ngModel)]="currentTask.status" required>
+          @for (option of statusOptions; track option) {
           <option [value]="option">{{ option }}</option>
           }
         </select></p>

@@ -7,9 +7,66 @@
     padding-top: 96px;
 }
 
+.task-table {
+    border: 1px solid blue;
+    max-width: calc(1440px);
+    width: calc(100% - 232px);
+    height: calc(100dvh - 100px - 232px);
+    flex: 1;
+    margin-left: 232px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-inline: 64px;
+    gap: 16px;
+
+
+    .collumn {
+        border: 1px solid orange;
+        max-width: 244px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 16px;
+
+        .cell {
+            border: 1px solid purple;
+            border-radius: 10px;
+            min-height: 48px;
+            width: 100%;
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 1350px) {
     .board {
         padding-left: 0px;
         padding-top: 80px;
+    }
+
+    .task-table {
+        margin-left: 0px;
+        width: calc(100%);
+        height: calc(100dvh - 100px - 232px - 75px);
     }
 }

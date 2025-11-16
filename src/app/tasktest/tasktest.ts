@@ -17,6 +17,7 @@ export class Tasktest {
   currentTask: ITask = {} as ITask;
   defaultPriority: string = 'low';
   priorityOptions: string[] = ['low', 'medium', 'high'];
+  statusOptions: string[] = ['to-do', 'in-progress', 'await-feedback', 'done'];
   columnIndex: number = 0;
 
   constructor(public fbTaskService: FbTaskService) {
