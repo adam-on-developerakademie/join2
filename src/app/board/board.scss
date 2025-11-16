@@ -3,9 +3,13 @@
 }
 
 .board {
-    width: calc(1440px - 20px);
-    height: 100dvh;
-    margin-left: 232px;
+    padding-left: 232px;
     padding-top: 96px;
-    border: 1px solid black;
+}
+
+@media (max-width: 1350px) {
+    .board {
+        padding-left: 0px;
+        padding-top: 80px;
+    }
 }
