@@ -6,7 +6,7 @@ import { FbService } from '../../services/fb-service';
 
 @Component({
   selector: 'app-board-card',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './board-card.html',
   styleUrl: './board-card.scss',
 })

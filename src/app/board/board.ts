@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardHeader } from './board-header/board-header';
 import { FormsModule } from '@angular/forms';
@@ -6,8 +6,7 @@ import { FbTaskService } from '../services/fb-task-service';
 import { ITask } from '../interfaces/i-task';
 import { BoardCard } from './board-card/board-card';
 import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag, CdkDropList, } from '@angular/cdk/drag-drop';
-import { T } from '@angular/cdk/keycodes';
-
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,74 +15,198 @@ import { T } from '@angular/cdk/keycodes';
   templateUrl: './board.html',
   styleUrl: './board.scss',
 })
-export class Board {
+export class Board implements OnInit, OnDestroy {
 
   task: ITask = {} as ITask;
   currentTask: ITask = {} as ITask;
   defaultPriority: string = 'low';
   priorityOptions: string[] = ['low', 'medium', 'high'];
   columnIndex: number = 0;
-  TaskCollumnOne = {};
-  TaskCollumnTwo = {};
-  TaskCollumnThree = {};
-  TaskCollumnFour = {};
-  TaskCollumnFive: number[] = [];
-  TaskCollumnSix: number[] = [];
-  TaskCollumnSeven: number[] = [];
+  collumns: string[] = ['getTaskCollumnOne', 'getTaskCollumnTwo', 'getTaskCollumnThree', 'getTaskCollumnFour'];
+
+  // Cached column arrays to maintain references for CDK
+  todoTasks: ITask[] = [];
+  inProgressTasks: ITask[] = [];
+  awaitFeedbackTasks: ITask[] = [];
+  doneTasks: ITask[] = [];
+
+  private tasksSubscription: Subscription = new Subscription();
 
 
   constructor(private fbTaskService: FbTaskService) {
-
     this.task = this.fbTaskService.newTask;
     this.columnIndex = 0;
     this.currentTask = {} as ITask;
     console.log(this.currentTask, this.columnIndex);
-    this.fbTaskService.currentTask = this.currentTask
+    this.fbTaskService.currentTask = this.currentTask;
+  }
 
-    this.TaskCollumnOne = this.fbTaskService.tasksArray.filter(task => task.status === 'to-do').sort((a, b) => a.positionIndex - b.positionIndex)
-    this.TaskCollumnTwo = this.fbTaskService.tasksArray.filter(task => task.status === 'in-progress').sort((a, b) => a.positionIndex - b.positionIndex)
-    this.TaskCollumnThree = this.fbTaskService.tasksArray.filter(task => task.status === 'await-feedback').sort((a, b) => a.positionIndex - b.positionIndex)
-    this.TaskCollumnFour = this.fbTaskService.tasksArray.filter(task => task.status === 'done').sort((a, b) => a.positionIndex - b.positionIndex)
-    this.TaskCollumnFive = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    this.TaskCollumnSix = [10];
-    this.TaskCollumnSeven = [20, 30, 40];
+  ngOnInit() {
+    // Subscribe to task updates from the service only for external changes
+    this.tasksSubscription = this.fbTaskService.tasksUpdated$.subscribe(tasks => {
+      // Only update if we're not in the middle of a drag operation
+      if (!this.isDragging) {
+        this.updateColumnArrays();
+      }
+    });
 
+    // Initial update
+    this.updateColumnArrays();
+  }
 
+  private isDragging = false;
+
+  ngOnDestroy() {
+    this.tasksSubscription.unsubscribe();
   }
 
   gettasks() {
     return this.fbTaskService.tasksArray.sort((a, b) => a.positionIndex - b.positionIndex);
   }
 
-  getTaskCollumnOne() {
-    return this.fbTaskService.tasksArray.filter(task => task.status === 'to-do').sort((a, b) => a.positionIndex - b.positionIndex)
+  getTaskCollumn(header: string) {
+    const myArry = this.fbTaskService.tasksArray.filter(task => task.status === header)
+    return myArry
   }
-  getTaskCollumnTwo() {
-    return this.fbTaskService.tasksArray.filter(task => task.status === 'in-progress').sort((a, b) => a.positionIndex - b.positionIndex)
+
+  updateColumnArrays() {
+    //console.log('Updating column arrays, isDragging:', this.isDragging);
+    //console.log('All tasks from service:', this.fbTaskService.tasksArray);
+
+    // Clear existing arrays while maintaining references
+    this.todoTasks.length = 0;
+    this.inProgressTasks.length = 0;
+    this.awaitFeedbackTasks.length = 0;
+    this.doneTasks.length = 0;
+
+    // Populate arrays with sorted tasks
+    const todoTasks = this.fbTaskService.tasksArray
+      .filter(task => task.status === 'to-do')
+      .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
+    this.todoTasks.push(...todoTasks);
+
+    const inProgressTasks = this.fbTaskService.tasksArray
+      .filter(task => task.status === 'in-progress')
+      .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
+    this.inProgressTasks.push(...inProgressTasks);
+
+    const awaitFeedbackTasks = this.fbTaskService.tasksArray
+      .filter(task => task.status === 'await-feedback')
+      .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
+    this.awaitFeedbackTasks.push(...awaitFeedbackTasks);
+
+    const doneTasks = this.fbTaskService.tasksArray
+      .filter(task => task.status === 'done')
+      .sort((a, b) => (a.positionIndex ?? 0) - (b.positionIndex ?? 0));
+    this.doneTasks.push(...doneTasks);
+
+    /*     console.log('Updated arrays:', {
+          todoTasks: this.todoTasks,
+          inProgressTasks: this.inProgressTasks,
+          awaitFeedbackTasks: this.awaitFeedbackTasks,
+          doneTasks: this.doneTasks
+        }); */
   }
-  getTaskCollumnThree() {
-    return this.fbTaskService.tasksArray.filter(task => task.status === 'await-feedback').sort((a, b) => a.positionIndex - b.positionIndex)
-  }
-  getTaskCollumnFour() {
-    return this.fbTaskService.tasksArray.filter(task => task.status === 'done').sort((a, b) => a.positionIndex - b.positionIndex)
-  }
-  getTaskCollumnFive() { return this.TaskCollumnFive; }
-  getTaskCollumnSix() { return this.TaskCollumnSix; }
-  getTaskCollumnSeven() { return this.TaskCollumnSeven; }
 
-
-  drop2(n: any) { }
-
-  drop(event: CdkDragDrop<number[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      console.log(event.container.data, event.previousIndex, event.currentIndex);
-
-    } else {
-      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex,);
-      console.log(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex,);
+  getColumnArray(status: string): ITask[] {
+    switch (status) {
+      case 'to-do':
+        return this.todoTasks;
+      case 'in-progress':
+        return this.inProgressTasks;
+      case 'await-feedback':
+        return this.awaitFeedbackTasks;
+      case 'done':
+        return this.doneTasks;
+      default:
+        return [];
     }
   }
+
+  getColumnArrayById(containerId: string): ITask[] {
+    const status = this.getStatusFromContainerId(containerId);
+    return this.getColumnArray(status);
+  }
+
+  async drop(event: CdkDragDrop<ITask[]>) {
+    const draggedTask = event.item.data as ITask;
+    //console.log('Drop event:', event, 'Dragged task:', draggedTask);
+
+    if (!draggedTask) return;
+
+    this.isDragging = true;
+
+    if (event.previousContainer === event.container) {
+      // Innerhalb derselben Spalte verschieben
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      //console.log('Moved within same column:', event.container.data);
+
+      // Positionsindizes für alle Tasks in dieser Spalte aktualisieren
+      const updates = event.container.data.map((task, index) => {
+        task.positionIndex = index;
+        return this.fbTaskService.updateTask(task.dbid, { positionIndex: index });
+      });
+
+      await Promise.all(updates);
+    } else {
+      // Zwischen Spalten verschieben
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+
+      // Status des verschobenen Tasks ändern
+      const newStatus = this.getStatusFromContainerId(event.container.id);
+      draggedTask.status = newStatus;
+
+      /*       console.log('Moved between columns:', {
+              from: event.previousContainer.id,
+              to: event.container.id,
+              newStatus,
+              task: draggedTask
+            }); */
+
+      // Task Status und Position in Firebase aktualisieren
+      await this.fbTaskService.updateTask(draggedTask.dbid, {
+        status: newStatus,
+        positionIndex: event.currentIndex
+      });
+
+      // Positionsindizes in beiden Spalten korrigieren
+      const sourceUpdates = event.previousContainer.data.map((task, index) => {
+        task.positionIndex = index;
+        return this.fbTaskService.updateTask(task.dbid, { positionIndex: index });
+      });
+
+      const targetUpdates = event.container.data.map((task, index) => {
+        task.positionIndex = index;
+        return this.fbTaskService.updateTask(task.dbid, { positionIndex: index });
+      });
+
+      await Promise.all([...sourceUpdates, ...targetUpdates]);
+    }
+
+    this.isDragging = false;
+  }
+
+  private getStatusFromContainerId(containerId: string): string {
+    switch (containerId) {
+      case 'getTaskCollumnOne':
+        return 'to-do';
+      case 'getTaskCollumnTwo':
+        return 'in-progress';
+      case 'getTaskCollumnThree':
+        return 'await-feedback';
+      case 'getTaskCollumnFour':
+        return 'done';
+      default:
+        return 'to-do';
+    }
+  }
+
+
 
   /** Predicate function that only allows even numbers to be dropped into a list. */
   evenPredicate(item: CdkDrag<number>) {
@@ -99,6 +222,13 @@ export class Board {
     return true;
   }
 
+  onDragStarted() {
+    this.isDragging = true;
+    //console.log('Drag started');
+  }
 
-
+  onDragEnded() {
+    //console.log('Drag ended');
+    // Don't set isDragging to false here, let the drop method handle it
+  }
 }
