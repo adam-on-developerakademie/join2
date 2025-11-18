@@ -3,10 +3,20 @@
 </div>
 
 <div class="task-table">
-<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnOne(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
-<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnTwo(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
-<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnThree(); track item) {<div class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
-<div cdkDropListGroup class="collumn"> @for (item of getTaslCollumnFour(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
+<div class="collumn"> @for (item of getTaskCollumnOne(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
+<div class="collumn"> @for (item of getTaskCollumnTwo(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
+<div class="collumn"> @for (item of getTaskCollumnThree(); track item) {<div class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
+<div class="collumn"> @for (item of getTaskCollumnFour(); track item) {<div  class="cell"><app-board-card [card]=item></app-board-card></div>} </div>
 
-    
-</div>      
+<div id="taskCollumnFive" cdkDropList  [cdkDropListData]="getTaskCollumnFive()" [cdkDropListConnectedTo]="['taskCollumnSix', 'taskCollumnSeven']" (cdkDropListDropped)="drop($event)" 
+[cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+ @for (item of getTaskCollumnFive(); track item) {<div cdkDrag [cdkDragData]="item" class="cell" >{{item}}</div>} </div>
+
+<div id="taskCollumnSix" cdkDropList  [cdkDropListData]="getTaskCollumnSix()" [cdkDropListConnectedTo]="['taskCollumnFive', 'taskCollumnSeven']"  (cdkDropListDropped)="drop($event)" 
+[cdkDropListEnterPredicate]="evenPredicate" class="collumn">
+ @for (item of getTaskCollumnSix(); track item) {<div cdkDrag [cdkDragData]="item" class="cell">{{item}}</div>} </div>
+
+ <div id="taskCollumnSeven" cdkDropList  [cdkDropListData]="getTaskCollumnSeven()" [cdkDropListConnectedTo]="['taskCollumnFive', 'taskCollumnSix']" (cdkDropListDropped)="drop($event)" 
+[cdkDropListEnterPredicate]="newPredicate" class="collumn">
+ @for (item of getTaskCollumnSeven(); track item) {<div cdkDrag [cdkDragData]="item" class="cell">{{item}}</div>} </div>
+
