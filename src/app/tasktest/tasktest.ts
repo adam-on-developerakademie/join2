@@ -18,15 +18,23 @@ export class Tasktest {
   defaultPriority: string = 'low';
   priorityOptions: string[] = ['low', 'medium', 'high'];
   statusOptions: string[] = ['to-do', 'in-progress', 'await-feedback', 'done'];
+  categoryOptions: { category: number, categoryProperties: { name: string; color: string }[] } =
+    {
+      category: 0,
+      categoryProperties: [
+        { name: 'User Story', color: 'blue' },
+        { name: 'Technical Task', color: 'green' },
+      ]
+    };
   columnIndex: number = 0;
 
   constructor(public fbTaskService: FbTaskService) {
 
     this.task = this.fbTaskService.newTask;
     this.columnIndex = 0;
-    this.currentTask = {} as ITask;
+    this.currentTask = this.task;
     console.log(this.currentTask, this.columnIndex);
-    
+
     this.fbTaskService.currentTask = this.currentTask
   }
 
@@ -35,6 +43,9 @@ export class Tasktest {
   }
 
   addTask(newTask: ITask) {
+    newTask.category.categoryProperties[0].color = this.categoryOptions.categoryProperties[newTask.category.category].color;
+    newTask.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[newTask.category.category].name;
+    newTask.category.category = 0;
     newTask.createDate = new Date().toISOString();
     this.fbTaskService.addTask(newTask);
     this.task = this.fbTaskService.newTask;

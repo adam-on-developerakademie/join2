@@ -40,7 +40,7 @@ export class FbTaskService {
       dueDate: this.task.dueDate || '',
       status: this.task.status || 'to-do',
       positionIndex: this.task.positionIndex || 0,
-      category: this.task.category || { name: 'New Task Category', color: '#FFFFFF' },
+      category: this.task.category || { category: 0, categoryProperties: [{ name: 'New Task Category', color: '#000000' }]},
       title: this.task.title || 'New Task Title',
       description: this.task.description || 'New Task Description',
       assignTo: this.task.assignTo || [],
@@ -88,7 +88,6 @@ export class FbTaskService {
     }
     await this.updateTask(task.dbid, updateData);
   }
-
 
   getCurrentUserId(): string {
     return this.fbService.getCurrentUserId();

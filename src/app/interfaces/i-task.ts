@@ -6,7 +6,7 @@ export interface ITask {
     dueDate: string;
     status: string | 'to-do' | 'in-progress' | 'await-feedback' | 'done';
     positionIndex: number;
-    category: { name: string; color: string };
+    category:{ category: number, categoryProperties: { name: string; color: string }[]};
     title: string;
     description: string;
     assignTo: string[];
