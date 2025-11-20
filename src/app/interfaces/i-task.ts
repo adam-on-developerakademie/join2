@@ -1,3 +1,5 @@
+import { IContact } from "./i-contact";
+
 export interface ITask {
     dbid?: string;
     createDate: string;
@@ -9,7 +11,7 @@ export interface ITask {
     category:{ category: number, categoryProperties: { name: string; color: string }[]};
     title: string;
     description: string;
-    assignTo: string[];
+    assignTo: IContact[];
     priority: string | 'low' | 'medium' | 'high';
     subTasks: ITask[];
     progress: number

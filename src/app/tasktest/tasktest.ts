@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FbService } from '../services/fb-service';
 import { FbTaskService } from '../services/fb-task-service';
 import { ITask } from '../interfaces/i-task';
 
@@ -12,6 +13,9 @@ import { ITask } from '../interfaces/i-task';
   styleUrl: './tasktest.scss',
 })
 export class Tasktest {
+
+  injectedFbService = inject(FbService);
+  FbService: FbService = this.injectedFbService;
 
   task: ITask = {} as ITask;
   currentTask: ITask = {} as ITask;
@@ -76,6 +80,13 @@ export class Tasktest {
 
   }
 
+  getUserForTask() {
+    console.log(this.FbService.contactsArray);
+    
+    return this.FbService.contactsArray
+  };
+
+
   openCalendar(target: 'task' | 'currentTask') {
     this.calendarTarget = target;
     this.showCalendar = true;
@@ -89,19 +100,19 @@ export class Tasktest {
     if (date < new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
       return; // Verhindere Auswahl von Terminen in der Vergangenheit
     }
-    
+
     // Formatiere Datum korrekt ohne Zeitzonenproblem
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
     const dateString = `${day}.${month}.${year}`;
-    
+
     if (this.calendarTarget === 'task') {
       this.task.dueDate = dateString;
     } else {
       this.currentTask.dueDate = dateString;
     }
-    
+
     this.closeCalendar();
   }
 
