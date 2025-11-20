@@ -3,10 +3,21 @@
     <form class="inputTask" (ngSubmit)="addTask(task)">
 
 
-        <p class="inputField ">12. Due Date:<span class="out"><input  class="in" name="dueDate" [(ngModel)]="task.dueDate" placeholder="Due Date"
-            required> <img src="assets/img/board/calendar.svg" alt="Calendar" (click)="openCalendar('task')" class="calendar-icon"></span></p>
+      <p class="inputField">13. Assign To: <select name="category" [(ngModel)]="task.assignTo" required>
+          @for (user of this.getUserForTask(); track user) {
+          <option [value]="$index">{{ user.name }} {{ user.surname }}</option>
+          }
+        </select></p>
 
-            <p class="inputField">15. Category: <select name="category" [(ngModel)]="task.category.category" required>
+
+
+
+
+      <p class="inputField ">14. Due Date:<span class="out"><input class="in" name="dueDate" [(ngModel)]="task.dueDate"
+            placeholder="Due Date" required> <img src="assets/img/board/calendar.svg" alt="Calendar"
+            (click)="openCalendar('task')" class="calendar-icon"></span></p>
+
+      <p class="inputField">15. Category: <select name="category" [(ngModel)]="task.category.category" required>
           @for (option of categoryOptions.categoryProperties; track option) {
           <option [value]="$index">{{ option.name }}</option>
           }
@@ -37,10 +48,9 @@
     <form class="inputTask" (ngSubmit)="updateTask()">
 
 
-          <p class="inputField ">12. Due Date:<span class="out"><input  class="in" name="dueDate" [(ngModel)]="currentTask.dueDate" placeholder="Due Date"
-            required> <img src="assets/img/board/calendar.svg" alt="Calendar" (click)="openCalendar('currentTask')" class="calendar-icon"></span></p>
-
-
+      <p class="inputField ">14. Due Date:<span class="out"><input class="in" name="dueDate"
+            [(ngModel)]="currentTask.dueDate" placeholder="Due Date" required> <img src="assets/img/board/calendar.svg"
+            alt="Calendar" (click)="openCalendar('currentTask')" class="calendar-icon"></span></p>
       <p class="inputField">15. Category: <select name="category" [(ngModel)]="currentTask.category.category" required>
           @for (option of categoryOptions.categoryProperties; track option) {
           <option [value]="$index">{{ option.name }}</option>}
@@ -112,19 +122,17 @@
         <div class="day-header">Do</div>
         <div class="day-header">Fr</div>
         <div class="day-header">Sa</div>
-        
+
         @for (day of getCalendarDays(); track $index) {
-          @if (day === null) {
-            <div class="calendar-day empty"></div>
-          } @else {
-            <div 
-              class="calendar-day"
-              [class.past]="isDayInPast(day)"
-              [class.today]="currentYear === today.getFullYear() && currentMonth === today.getMonth() && day === today.getDate()"
-              (click)="onDayClick(day)">
-              {{ day }}
-            </div>
-          }
+        @if (day === null) {
+        <div class="calendar-day empty"></div>
+        } @else {
+        <div class="calendar-day" [class.past]="isDayInPast(day)"
+          [class.today]="currentYear === today.getFullYear() && currentMonth === today.getMonth() && day === today.getDate()"
+          (click)="onDayClick(day)">
+          {{ day }}
+        </div>
+        }
         }
       </div>
       <button type="button" (click)="closeCalendar()" class="close-btn">Schließen</button>
