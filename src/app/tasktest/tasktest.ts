@@ -90,7 +90,11 @@ export class Tasktest {
       return; // Verhindere Auswahl von Terminen in der Vergangenheit
     }
     
-    const dateString = date.toISOString().split('T')[0];
+    // Formatiere Datum korrekt ohne Zeitzonenproblem
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const dateString = `${day}.${month}.${year}`;
     
     if (this.calendarTarget === 'task') {
       this.task.dueDate = dateString;
