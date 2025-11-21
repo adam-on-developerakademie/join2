@@ -18,4 +18,13 @@ export class BoardCard {
     this.cardClick.emit(this.card);
   }
 
+  getSubtaskDone(): number {
+    return this.card.subTasks.filter(subtask => subtask.subtaskCompleted === true).length;
+  }
+
+  getSubtaskProgress(): number {
+    if (this.card.subTasks.length === 0) return 0;
+    return (this.getSubtaskDone() / this.card.subTasks.length) * 100;
+  }
+
 }
