@@ -12,9 +12,9 @@
 
     <div class="progress" *ngIf="card.subTasks.length > 0">
       <div class="bar">
-        <div class="fill" [style.width.%]="card.subTasks.length / card.subTasks.length * 100"></div>
+        <div class="fill" [style.width.%]="getSubtaskProgress()"></div>
       </div>
-      <span class="subtasks">{{ card.subTasks.length }}/{{ card.subTasks.length }} Subtasks</span>
+      <span class="subtasks">{{ getSubtaskDone() }}/{{ card.subTasks.length }} Subtasks</span>
     </div>
 
     <div class="footer">
