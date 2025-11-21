@@ -6,22 +6,21 @@
     </div>
 
     <div class="content">
-      <h1>{{ card.completed }}</h1>
-      <h3 class="title">{{ card.title }}</h3>
+      <h3 class="title">{{ card.positionIndex +1 }}. {{ card.title }}</h3>
       <p class="text">{{ card.description }}</p>
     </div>
 
-    <div class="progress" *ngIf="card.progress > 0">
+    <div class="progress" *ngIf="card.subTasks.length > 0">
       <div class="bar">
-        <div class="fill" [style.width.%]="card.priority"></div>
+        <div class="fill" [style.width.%]="card.subTasks.length / card.subTasks.length * 100"></div>
       </div>
-      <span class="subtasks">{{ card.subTasks }}</span>
+      <span class="subtasks">{{ card.subTasks.length }}/{{ card.subTasks.length }} Subtasks</span>
     </div>
 
     <div class="footer">
       <div class="avatars">
         <div class="avatar" *ngFor="let avatar of card.assignTo" [style.background]="avatar.color">
-          {{  avatar.name.charAt(0) + avatar.surname.charAt(0) }}
+          {{ avatar.name.charAt(0) + avatar.surname.charAt(0) }}
         </div>
       </div>
       <div class="prio" [class.prio-low]="card.priority === 'low'" [class.prio-medium]="card.priority === 'medium'"
