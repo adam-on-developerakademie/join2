@@ -111,16 +111,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
+    padding-left: calc(232px / 2);
 }
 
 .overlay-content {
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    max-width: 600px;
+    max-width: 1116px;
+    max-height: 870px;
     width: 90%;
-    max-height: 80vh;
+    height: 80%;
     overflow: auto;
 }
 
@@ -134,5 +136,13 @@
         margin-left: 0px;
         width: calc(100%);
         height: calc(100dvh - 100px - 232px - 75px);
+    }
+
+    .overlay {
+        padding-left: 0px;
+
+        .overlay-content {
+            margin-bottom: 100px;
+        }
     }
 }
