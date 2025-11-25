@@ -63,7 +63,7 @@ export class FbTaskService {
     });
   }
 
-  async addTask(task: ITask) {
+  async createTask(task: ITask) {
     await addDoc(this.tasksCollection, task);
   }
 

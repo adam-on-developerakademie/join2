@@ -22,32 +22,23 @@ export class AddCard {
   // Output Event zum Schließen des Overlays
   closeOverlay = output<void>();
 
-  getColumnDisplayName(column: string): string {
-    switch (column) {
-      case 'to-do':
-        return 'To Do';
-      case 'in-progress':
-        return 'In Progress';
-      case 'await-feedback':
-        return 'Await Feedback';
-      case 'done':
-        return 'Done';
-      default:
-        return column;
-    }
-  }
+  /*   getColumnDisplayName(column: string): string {
+      switch (column) {
+        case 'to-do':
+          return 'To Do';
+        case 'in-progress':
+          return 'In Progress';
+        case 'await-feedback':
+          return 'Await Feedback';
+        case 'done':
+          return 'Done';
+        default:
+          return column;
+      }
+    } */
 
   onClose(): void {
     this.closeOverlay.emit();
-  }
-
-  whichPriority(priority: string): boolean {
-    return this.task.priority === priority;
-  }
-
-  setPriority(priority: string): void {
-    this.task.priority = priority;
-    this.currentTask.priority = priority
   }
 
   injectedFbService = inject(FbService);
@@ -95,6 +86,17 @@ export class AddCard {
     this.fbTaskService.currentTask = this.currentTask
   }
 
+
+  whichPriority(priority: string): boolean {
+    return this.task.priority === priority;
+  }
+
+  setPriority(priority: string): void {
+    this.task.priority = priority;
+    this.currentTask.priority = priority
+  }
+
+
   gettasks() {
     return this.fbTaskService.tasksArray.sort((a, b) => a.positionIndex - b.positionIndex);
   }
@@ -104,8 +106,9 @@ export class AddCard {
     newTask.category.categoryProperties[0].color = this.categoryOptions.categoryProperties[newTask.category.category].color;
     newTask.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[newTask.category.category].name;
     newTask.category.category = 0;
+    newTask.status = this.getStatus(this.selectedColumn());
     newTask.createDate = new Date().toISOString();
-    this.fbTaskService.addTask(newTask);
+    this.fbTaskService.createTask(newTask);
     this.task = this.fbTaskService.newTask;
   }
 
@@ -117,6 +120,9 @@ export class AddCard {
     await this.fbTaskService.updateTask(this.currentTask.dbid, this.currentTask);
   }
 
+  getStatus(status: string): string {
+    return status
+  }
 
   nextTask() {
     if (!this.fbTaskService.tasksArray.length) return;
@@ -229,7 +235,7 @@ export class AddCard {
 
 
   getUserForTask() {
-    return this.FbService.contactsArray.filter(user => 
+    return this.FbService.contactsArray.filter(user =>
       user.name.toLowerCase().includes(this.filterAssignedUsers.toLowerCase()) ||
       user.surname.toLowerCase().includes(this.filterAssignedUsers.toLowerCase()) ||
       user.email.toLowerCase().includes(this.filterAssignedUsers.toLowerCase())

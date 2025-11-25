@@ -69,7 +69,7 @@ export class Tasktest {
     newTask.category.categoryProperties[0].name = this.categoryOptions.categoryProperties[newTask.category.category].name;
     newTask.category.category = 0;
     newTask.createDate = new Date().toISOString();
-    this.fbTaskService.addTask(newTask);
+    this.fbTaskService.createTask(newTask);
     this.task = this.fbTaskService.newTask;
   }
 
