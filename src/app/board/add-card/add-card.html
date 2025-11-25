@@ -75,7 +75,7 @@
                         <!-- {{ user.name }} {{ user.surname }}@if (!$last) {, } -->
                       }
                       }
-                        @else { }<input name="subtask" [(ngModel)]="filterAssignedUsers"
+                        @else { }<input name="subtask" [(ngModel)]="this.filterAssignedUsers"
                           placeholder="Select contacts to assign" required>
                         <span class="dropdown-arrow-icons">
                           <img [class.dNone]="showAssignDropdown.currentTask"

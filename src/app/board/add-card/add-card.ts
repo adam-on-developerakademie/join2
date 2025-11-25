@@ -5,6 +5,7 @@ import { FbService } from '../../services/fb-service';
 import { FbTaskService } from '../../services/fb-task-service';
 import { ITask } from '../../interfaces/i-task';
 import { IContact } from '../../interfaces/i-contact';
+import { user } from '@angular/fire/auth';
 
 
 @Component({
@@ -228,8 +229,11 @@ export class AddCard {
 
 
   getUserForTask() {
-    console.log(this.FbService.contactsArray);
-    return this.FbService.contactsArray
+    return this.FbService.contactsArray.filter(user => 
+      user.name.toLowerCase().includes(this.filterAssignedUsers.toLowerCase()) ||
+      user.surname.toLowerCase().includes(this.filterAssignedUsers.toLowerCase()) ||
+      user.email.toLowerCase().includes(this.filterAssignedUsers.toLowerCase())
+    )
   }
 
   isUserAssigned(user: IContact, assignedUsers: IContact[]): boolean {
