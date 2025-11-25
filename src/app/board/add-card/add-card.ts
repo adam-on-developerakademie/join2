@@ -6,6 +6,7 @@ import { FbTaskService } from '../../services/fb-task-service';
 import { ITask } from '../../interfaces/i-task';
 import { IContact } from '../../interfaces/i-contact';
 import { user } from '@angular/fire/auth';
+import { Value } from '@angular/fire/remote-config';
 
 
 @Component({
@@ -66,11 +67,10 @@ export class AddCard {
     if (!this.currentTask.assignTo) {
       this.currentTask.assignTo = [];
     }
-    console.log(this.currentTask, this.columnIndex);
+    console.log(this.currentTask, this.columnIndex, this.closeOverlay);
 
     this.fbTaskService.currentTask = this.currentTask
   }
-
 
   whichPriority(priority: string): boolean {
     return this.task.priority === priority;
@@ -81,6 +81,19 @@ export class AddCard {
     this.currentTask.priority = priority
   }
 
+  letSee(x: any) {
+    let newValue = x.target
+    console.log(newValue.getAttribute('class'));
+    console.log((newValue.getAttribute('class') === null || newValue.getAttribute('class') == 'user-checkbox') ? 'OK' : 'close')
+  };
+
+  closeAssignDropdown(event: any) {
+    if (event.target.getAttribute('class') != null) {
+      if (!['', 'ng', 'fi', 'us'].includes((event.target.getAttribute('class').slice(0, 2)))) {
+        this.showAssignDropdown = { task: false, currentTask: false };
+      }
+    }
+  }
 
   gettasks() {
     return this.fbTaskService.tasksArray.sort((a, b) => a.positionIndex - b.positionIndex);
