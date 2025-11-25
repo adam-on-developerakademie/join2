@@ -1,4 +1,4 @@
-<div class="add-task-page">
+<div class="add-task-page" (click)="closeAssignDropdown($event)">
   <main class="content">
     <form class="inputTask" (ngSubmit)="addTask(task)">
       <div class="content-top">
@@ -122,8 +122,8 @@
         </div>
       </div>
       <div class="actions">
-        <button type="button" class="btn btn--secondary desktop-only">Cancel</button>
-        <button type="button" class="btn btn--primary">
+        <button type="button" (click)="onClose()"  class="btn btn--secondary desktop-only">Cancel</button>
+        <button type="submit" (click)="onClose()" class="btn btn--primary">
           <span>Create Task</span>
           <i class="check"></i>
         </button>
