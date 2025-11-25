@@ -5,7 +5,7 @@
     flex-direction: column;
     gap: 24px;
     padding: 64px;
-
+    background-color: var(--bg);
 
 
     .content {
@@ -92,6 +92,10 @@
                             box-shadow: 0px 0px 4px 0px #0000001A;
                             padding: 16px 10px 16px 10px;
 
+                            &:hover {
+                                box-shadow: 0px 4px 4px 0px #00000040;
+                            }
+
                         }
 
                         .urgent.selected {
@@ -111,12 +115,77 @@
                             font-size: 21px;
                             background-color: #7AE229;
                         }
+                    }
+                }
 
+                .select-assign-to {
+                    width: 100%;
+                    background-color: white;
+                    border-radius: 10px;
+                    border: 0;
+                    z-index: 2000;
+
+                    &:hover {
+                        border: 1px solid #29ABE2 !important;
+                        box-shadow: 0 0 0 3px rgba(41, 171, 226, 0.1);
+                    }
+
+                    .assign-to-dropdown {
+                        .dropdown-header {
+                            height: 48px;
+
+                            .selected-users {
+                                .filterAssignedUsers {
+                                    width: 100%;
+                                    height: 48px;
+                                    background-color: white;
+                                    display: flex;
+                                    align-items: center;
+
+
+                                    input {
+                                        width: 100%;
+                                        height: 24px;
+                                        border: 0;
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        line-height: 120%;
+                                        outline: none;
+                                    }
+
+                                    .dropdown-arrow-icons {
+                                        width: 24px;
+                                        height: 24px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
+}
+
+.assign-to-container {
+    max-height: 136px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+    padding-left: 8px;
+    
+
+
+
+    .user-checkbox {
+        display: flex;
+        justify-content: space-between;
+    }
+
 }
 
 .field {
@@ -126,7 +195,7 @@
     gap: 8px;
 }
 
-.displayNone {
+.dNone {
     display: none !important;
 }
 
