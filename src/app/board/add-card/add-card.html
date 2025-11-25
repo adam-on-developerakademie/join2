@@ -1,94 +1,138 @@
 <div class="add-task-page">
   <main class="content">
-    <div class="content-top">
-      <h1 class="page-title">Add Task</h1>
-      <div class="input-content">
-        <div class="col left-col">
-          <div class="field">
-            <label class="label">Title*</label>
-            <div class="input">
-              <input type="text" placeholder="Enter a title" />
+    <form class="inputTask" (ngSubmit)="addTask(task)">
+      <div class="content-top">
+        <h1 class="page-title">Add Task</h1>
+        <div class="input-content">
+
+          <div class="col left-col">
+            <div class="field">
+              <label class="label">Title*</label>
+              <div class="input">
+                <input type="text" placeholder="Enter a title" />
+              </div>
+              <div class="hint hint--error hide-on-empty">*This field is required</div>
             </div>
-            <div class="hint hint--error hide-on-empty">*This field is required</div>
+
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="textarea">
+                <textarea placeholder="Enter a Description"></textarea>
+                <span class="dots"></span>
+              </div>
+              <div class="hint hide-on-empty"></div>
+            </div>
+
+            <div class="field">
+              <label class="label">Due date*</label>
+              <div class="input input--with-icon">
+                <input type="text" placeholder="dd/mm/yyyy" />
+                <span class="calendar"></span>
+              </div>
+              <div class="hint hint--error hide-on-empty">*This field is required</div>
+            </div>
           </div>
 
-          <div class="field">
-            <label class="label">Description</label>
-            <div class="textarea">
-              <textarea placeholder="Enter a Description"></textarea>
-              <span class="dots"></span>
+          <div class="divider-vert"></div>
+
+          <div class="col right-col">
+            <div class="field-priority">
+              <label class="label">Priority</label>
+              <div class="priority-buttons">
+                <button class="priority-btn urgent" [class.selected]='whichPriority("urgent")'
+                  (click)="setPriority('urgent')">
+                  <span>Urgent</span>
+                  <img [class.dNone]='whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent.svg" alt="">
+                  <img [class.dNone]='!whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent-white.svg"
+                    alt="">
+                </button>
+                <button class="priority-btn medium" [class.selected]='whichPriority("medium")'
+                  (click)="setPriority('medium')">
+                  <span>Medium</span>
+                  <img [class.dNone]='whichPriority("medium")' src="assets/img/board/board-card/prio-medium.svg" alt="">
+                  <img [class.dNone]='!whichPriority("medium")' src="assets/img/board/board-card/prio-medium-white.svg"
+                    alt="">
+                </button>
+                <button class="priority-btn low" [class.selected]='whichPriority("low")' (click)="setPriority('low')">
+                  <span>Low</span>
+                  <img [class.dNone]='whichPriority("low")' src="assets/img/board/board-card/prio-low.svg" alt="">
+                  <img [class.dNone]='!whichPriority("low")' src="assets/img/board/board-card/prio-low-white.svg"
+                    alt="">
+                </button>
+              </div>
             </div>
-            <div class="hint hide-on-empty"></div>
-          </div>
 
-          <div class="field">
-            <label class="label">Due date*</label>
-            <div class="input input--with-icon">
-              <input type="text" placeholder="dd/mm/yyyy" />
-              <span class="calendar"></span>
-            </div>
-            <div class="hint hint--error hide-on-empty">*This field is required</div>
-          </div>
-        </div>
+            <div class="field">
+              <label class="label">Assigned to</label>
+              <button class="select-assign-to">
 
-        <div class="divider-vert"></div>
+                <div class="assign-to-dropdown">
+                  <div class="dropdown-header" (click)="toggleAssignDropdown('currentTask')">
+                    <span class="selected-users" aria-placeholder="Select contacts to assign">
+                      <span class="filterAssignedUsers">
+                        @if (currentTask.assignTo && currentTask.assignTo.length > 0) {
+                        @for (user of currentTask.assignTo; track user) {
+                        <!-- {{ user.name }} {{ user.surname }}@if (!$last) {, } -->
+                      }
+                      }
+                        @else { }<input name="subtask" [(ngModel)]="filterAssignedUsers"
+                          placeholder="Select contacts to assign" required>
+                        <span class="dropdown-arrow-icons">
+                          <img [class.dNone]="showAssignDropdown.currentTask"
+                            src="assets/img/board/add-card/assigned-to-arrow-drop-down-open.svg"
+                            alt="Assign to list arrow open">
+                          <img [class.dNone]="!showAssignDropdown.currentTask"
+                            src="assets/img/board/add-card/assigned-to-arrow-drop-down-close.svg"
+                            alt="Assign to list arrow close">
+                        </span>
+                        <span class="dropdown-arrow" [class.open]="showAssignDropdown.currentTask"></span></span>
 
-        <div class="col right-col">
-          <div class="field-priority">
-            <label class="label">Priority</label>
-            <div class="priority-buttons">
-              <button class="priority-btn urgent" [class.selected]='whichPriority("urgent")'
-                (click)="setPriority('urgent')">
-                <span>Urgent</span>
-                <img [class.displayNone]='whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent.svg" alt="">
-                <img [class.displayNone]='!whichPriority("urgent")' src="assets/img/board/board-card/prio-urgent-white.svg" alt="">
+                    </span>
+                  </div>
+                  @if (showAssignDropdown.currentTask) {
+                  <div class="assign-to-container">
+                    @for (user of this.getUserForTask(); track user) {
+                    <label class="user-checkbox">
+                     <span>{{ user.name }} {{ user.surname }}</span>
+                      <input type="checkbox" [checked]="isUserAssigned(user, currentTask.assignTo)"
+                        (change)="toggleUserAssignment(user, currentTask.assignTo)">
+                      
+                    </label>
+                    }
+                  </div>
+                  }
+                </div>
+
+
+
               </button>
-              <button class="priority-btn medium" [class.selected]='whichPriority("medium")'
-                (click)="setPriority('medium')">
-                <span>Medium</span>
-                <img [class.displayNone]='whichPriority("medium")' src="assets/img/board/board-card/prio-medium.svg" alt="">
-                <img [class.displayNone]='!whichPriority("medium")' src="assets/img/board/board-card/prio-medium-white.svg" alt="">
-              </button>
-              <button class="priority-btn low" [class.selected]='whichPriority("low")' (click)="setPriority('low')">
-                <span>Low</span>
-                <img [class.displayNone]='whichPriority("low")' src="assets/img/board/board-card/prio-low.svg" alt="">
-                <img [class.displayNone]='!whichPriority("low")' src="assets/img/board/board-card/prio-low-white.svg" alt="">
+            </div>
+
+            <div class="field">
+              <label class="label">Category*</label>
+              <button class="select">
+                <span>Select contacts to assign</span>
+                <span class="caret"></span>
               </button>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label">Assigned to</label>
-            <button class="select">
-              <span>Select contacts to assign</span>
-              <span class="caret"></span>
-            </button>
-          </div>
-
-          <div class="field">
-            <label class="label">Category*</label>
-            <button class="select">
-              <span>Select contacts to assign</span>
-              <span class="caret"></span>
-            </button>
-          </div>
-
-          <div class="field">
-            <label class="label">Subtasks</label>
-            <div class="input">
-              <input type="text" placeholder="Add new subtask" />
+            <div class="field">
+              <label class="label">Subtasks</label>
+              <div class="input">
+                <input type="text" placeholder="Add new subtask" />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="actions">
-      <button type="button" class="btn btn--secondary desktop-only">Cancel</button>
-      <button type="button" class="btn btn--primary">
-        <span>Create Task</span>
-        <i class="check"></i>
-      </button>
-    </div>
+      <div class="actions">
+        <button type="button" class="btn btn--secondary desktop-only">Cancel</button>
+        <button type="button" class="btn btn--primary">
+          <span>Create Task</span>
+          <i class="check"></i>
+        </button>
+      </div>
+    </form>
 
   </main>
 </div>

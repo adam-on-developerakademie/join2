@@ -65,6 +65,7 @@ export class AddCard {
         { name: 'Technical Task', color: '#1FD7C1' },
       ]
     };
+  filterAssignedUsers: string = '';
   columnIndex: number = 0;
   showCalendar: boolean = false;
   calendarTarget: 'task' | 'currentTask' = 'task';
