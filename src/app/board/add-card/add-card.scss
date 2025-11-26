@@ -189,7 +189,6 @@
                         border-radius: 50%;
                         text-align: center;
                         margin-left: -8px;
-                        background: #462f8a;
 
                         &:first-child {
                             margin-left: 0;
@@ -211,7 +210,14 @@
 
     .user-checkbox {
         display: flex;
+        align-items: center;
         justify-content: space-between;
+
+        .user-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
     }
 }
 

@@ -63,7 +63,7 @@
               </div>
             </div>
 
-            <div class="field" >
+            <div class="field">
               <label class="label">Assigned to</label>
               <button type="button" class="select-assign-to">
                 <div class="assign-to-dropdown">
@@ -86,14 +86,15 @@
                             alt="Assign to list arrow close">
                         </span>
                         <span class="dropdown-arrow" [class.open]="showAssignDropdown.currentTask"></span></span>
-
                     </span>
                   </div>
                   @if (showAssignDropdown.currentTask) {
                   <div class="assign-to-container">
                     @for (user of this.getUserForTask(); track user) {
                     <label class="user-checkbox">
-                      <span>{{ user.name }} {{ user.surname }}</span>
+                      <span class="user-checkbox-label">
+                        <div class="avatar" [style.background]="user.color"  >{{ user.name.charAt(0) + user.surname.charAt(0) }}</div>
+                      {{ user.name }} {{ user.surname }}</span>
                       <input type="checkbox" [checked]="isUserAssigned(user, currentTask.assignTo)"
                         (change)="toggleUserAssignment(user, currentTask.assignTo)">
 
