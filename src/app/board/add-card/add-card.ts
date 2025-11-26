@@ -88,8 +88,9 @@ export class AddCard {
   };
 
   closeAssignDropdown(event: any) {
+    //console.log(event.target.getAttribute('class'));
     if (event.target.getAttribute('class') != null) {
-      if (!['', 'ng', 'fi', 'us'].includes((event.target.getAttribute('class').slice(0, 2)))) {
+      if (!['', 'ng', 'fi', 'us','dr'].includes((event.target.getAttribute('class').slice(0, 2)))) {
         this.showAssignDropdown = { task: false, currentTask: false };
       }
     }
