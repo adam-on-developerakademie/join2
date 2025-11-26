@@ -53,7 +53,8 @@
                   <img [class.dNone]='!whichPriority("medium")' src="assets/img/board/board-card/prio-medium-white.svg"
                     alt="">
                 </button>
-                <button type="button" class="priority-btn low" [class.selected]='whichPriority("low")' (click)="setPriority('low')">
+                <button type="button" class="priority-btn low" [class.selected]='whichPriority("low")'
+                  (click)="setPriority('low')">
                   <span>Low</span>
                   <img [class.dNone]='whichPriority("low")' src="assets/img/board/board-card/prio-low.svg" alt="">
                   <img [class.dNone]='!whichPriority("low")' src="assets/img/board/board-card/prio-low-white.svg"
@@ -62,7 +63,7 @@
               </div>
             </div>
 
-            <div class="field">
+            <div class="field" >
               <label class="label">Assigned to</label>
               <button type="button" class="select-assign-to">
                 <div class="assign-to-dropdown">
@@ -72,8 +73,8 @@
                         @if (currentTask.assignTo && currentTask.assignTo.length > 0) {
                         @for (user of currentTask.assignTo; track user) {
                         <!-- {{ user.name }} {{ user.surname }}@if (!$last) {, } -->
-                      }
-                      }
+                        }
+                        }
                         @else { }<input name="subtask" [(ngModel)]="this.filterAssignedUsers"
                           placeholder="Select contacts to assign" required>
                         <span class="dropdown-arrow-icons">
@@ -92,16 +93,21 @@
                   <div class="assign-to-container">
                     @for (user of this.getUserForTask(); track user) {
                     <label class="user-checkbox">
-                     <span>{{ user.name }} {{ user.surname }}</span>
+                      <span>{{ user.name }} {{ user.surname }}</span>
                       <input type="checkbox" [checked]="isUserAssigned(user, currentTask.assignTo)"
                         (change)="toggleUserAssignment(user, currentTask.assignTo)">
-                      
+
                     </label>
                     }
                   </div>
                   }
                 </div>
               </button>
+              <div class="avatars">
+                <div class="avatar" *ngFor="let avatar of currentTask.assignTo" [style.background]="avatar.color">
+                  {{ avatar.name.charAt(0) + avatar.surname.charAt(0) }}
+                </div>
+              </div>
             </div>
 
             <div class="field">
@@ -122,7 +128,7 @@
         </div>
       </div>
       <div class="actions">
-        <button type="button" (click)="onClose()"  class="btn btn--secondary desktop-only">Cancel</button>
+        <button type="button" (click)="onClose()" class="btn btn--secondary desktop-only">Cancel</button>
         <button type="submit" (click)="onClose()" class="btn btn--primary">
           <span>Create Task</span>
           <i class="check"></i>

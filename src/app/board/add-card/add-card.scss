@@ -1,3 +1,11 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+    height: auto;
+    gap: 8px;
+}
+
 .add-task-page {
     width: 100%;
     height: 100%;
@@ -118,50 +126,73 @@
                     }
                 }
 
-                .select-assign-to {
-                    width: 100%;
-                    background-color: white;
-                    border-radius: 10px;
-                    border: 0;
-                    z-index: 2000;
+                .field {
+                    .select-assign-to {
+                        width: 100%;
+                        background-color: white;
+                        border-radius: 10px;
+                        border: 1px solid transparent;
+                        z-index: 2000;
 
-                    &:hover {
-                        border: 1px solid #29ABE2 !important;
-                        box-shadow: 0 0 0 3px rgba(41, 171, 226, 0.1);
-                    }
+                        &:hover {
+                            border: 1px solid #29ABE2;
+                            box-shadow: 0 0 0 3px rgba(41, 171, 226, 0.1);
+                        }
 
-                    .assign-to-dropdown {
-                        .dropdown-header {
-                            height: 48px;
+                        .assign-to-dropdown {
+                            .dropdown-header {
+                                height: 48px;
 
-                            .selected-users {
-                                .filterAssignedUsers {
-                                    width: 100%;
-                                    height: 48px;
-                                    background-color: white;
-                                    display: flex;
-                                    align-items: center;
-
-
-                                    input {
+                                .selected-users {
+                                    .filterAssignedUsers {
                                         width: 100%;
-                                        height: 24px;
-                                        border: 0;
-                                        font-weight: 400;
-                                        font-size: 20px;
-                                        line-height: 120%;
-                                        outline: none;
-                                    }
-
-                                    .dropdown-arrow-icons {
-                                        width: 24px;
-                                        height: 24px;
+                                        height: 48px;
+                                        background-color: white;
                                         display: flex;
                                         align-items: center;
-                                        justify-content: center;
+
+
+                                        input {
+                                            width: 100%;
+                                            height: 24px;
+                                            border: 0;
+                                            font-weight: 400;
+                                            font-size: 20px;
+                                            line-height: 120%;
+                                            outline: none;
+                                        }
+
+                                        .dropdown-arrow-icons {
+                                            width: 24px;
+                                            height: 24px;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        }
                                     }
                                 }
                             }
+                        }
+                    }
+
+                    .avatars {
+                        display: flex;
+                        gap: 0;
+                    }
+
+                    .avatar {
+                        width: 32px;
+                        height: 32px;
+                        border: 2px solid #fff;
+                        color: #fff;
+                        font: 400 12px/28px Inter, sans-serif;
+                        border-radius: 50%;
+                        text-align: center;
+                        margin-left: -8px;
+                        background: #462f8a;
+
+                        &:first-child {
+                            margin-left: 0;
                         }
                     }
                 }
@@ -177,23 +208,13 @@
     justify-content: space-between;
     overflow-y: scroll;
     padding-left: 8px;
-    
-
-
 
     .user-checkbox {
         display: flex;
         justify-content: space-between;
     }
-
 }
 
-.field {
-    display: flex;
-    flex-direction: column;
-    height: 88px;
-    gap: 8px;
-}
 
 .dNone {
     display: none !important;
