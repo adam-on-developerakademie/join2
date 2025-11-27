@@ -40,11 +40,11 @@ export class FbTaskService {
       dueDate: this.task.dueDate || '',
       status: this.task.status || 'to-do',
       positionIndex: this.task.positionIndex || 0,
-      category: this.task.category || { category: 0, categoryProperties: [{ name: 'New Task Category', color: '#000000' }] },
+      category: this.task.category || { category: -1, categoryProperties: [{ name: 'New Task Category', color: '#000000' }] },
       title: this.task.title || 'New Task Title',
       description: this.task.description || 'New Task Description',
       assignTo: this.task.assignTo || [],
-      priority: this.task.priority || 'low',
+      priority: this.task.priority || 'medium',
       subTasks: this.task.subTasks || [],
     };
 
