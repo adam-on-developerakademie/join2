@@ -25,7 +25,6 @@ export class BoardHeader {
   };
 
   addCard(columnType: string): void {
-    console.log('Adding task to column:', columnType);
     this.addTaskToColumn.emit(columnType);
   }
 

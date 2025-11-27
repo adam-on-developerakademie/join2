@@ -87,13 +87,13 @@
                   <div class="assign-to-container">
                     @for (user of this.getUserForTask(); track user) {
                     <label class="user-checkbox">
-                      <span class="user-checkbox-label">
+                      <span class="user-checkbox-label">  
                         <div class="avatar" [style.background]="user.color">{{ user.name.charAt(0) +
                           user.surname.charAt(0) }}</div>
                         {{ user.name }} {{ user.surname }}
                       </span>
-                      <input type="checkbox" [checked]="isUserAssigned(user, currentTask.assignTo)"
-                        (change)="toggleUserAssignment(user, currentTask.assignTo)">
+                      <input type="checkbox" [checked]="isUserAssigned(user, task.assignTo)"
+                        (change)="toggleUserAssignment(user, task.assignTo)">
 
                     </label>
                     }
