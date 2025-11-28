@@ -128,7 +128,7 @@ export class AddCard implements OnInit {
   closeAssignDropdown(event: any) {
     //console.log(event.target.getAttribute('class'));
     if (event.target.getAttribute('class') != null) {
-      if (!['', 'ng', 'fi', 'us', 'dr', 'ca'].includes((event.target.getAttribute('class').slice(0, 2)))) {
+      if (!['', 'ng', 'fi', 'us', 'dr', 'ca', 'dN'].includes((event.target.getAttribute('class').slice(0, 2)))) {
         this.showAssignDropdown = { task: false, currentTask: false };
         this.showCategoryDropdown = { task: false, currentTask: false };
       }

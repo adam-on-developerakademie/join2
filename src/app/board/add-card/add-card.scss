@@ -141,6 +141,7 @@
                         border-radius: 10px;
                         border: 1px solid transparent;
                         z-index: 2000;
+                        padding: 3px;
 
                         &:hover,
                         &:active,
@@ -159,7 +160,6 @@
                                         background-color: white;
                                         display: flex;
                                         align-items: center;
-
 
                                         input {
                                             width: 100%;
@@ -277,12 +277,18 @@
     flex-direction: column;
     justify-content: space-between;
     overflow-y: scroll;
-    padding-left: 8px;
+    scrollbar-width: thin;
+    gap: 1px;
 
     .user-checkbox {
+        width: 100%;
+        height: 48px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-right: 10px;
 
         .user-checkbox-label {
             display: flex;
@@ -290,12 +296,19 @@
             gap: 16px;
             font-size: 20px;
             font-weight: 400;
+            margin-left: 10px;
         }
     }
 }
 
+.checkedIn {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
 .dataIsSet {
-    color: #000000!important;
+    color: #000000 !important;
 }
 
 .dNone {
