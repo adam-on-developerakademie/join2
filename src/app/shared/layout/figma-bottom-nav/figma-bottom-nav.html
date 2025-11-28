@@ -1,4 +1,13 @@
 <nav class="bottom-nav" aria-label="Primary">
+
+<ng-container *ngIf="externalLegalMode; else appMenu">
+  <a routerLink="/login" class="item item-login">
+    <img src="assets/img/shared/bottom-nav/summary.svg" alt="Login icon" />
+    <span>Login</span>
+  </a>
+</ng-container>
+
+<ng-template #appMenu>
   <a routerLink="/summary" routerLinkActive="item--active" class="item">
     <img src="assets/img/shared/bottom-nav/summary.svg" alt="" />
     <span>Summary</span>
@@ -15,4 +24,5 @@
     <img src="assets/img/shared/bottom-nav/contacts.svg" alt="" />
     <span>Contacts</span>
   </a>
+</ng-template>
 </nav>
