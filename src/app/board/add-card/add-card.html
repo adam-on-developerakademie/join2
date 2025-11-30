@@ -4,7 +4,6 @@
       <div class="content-top">
         <h1 class="page-title">Add Task</h1>
         <div class="input-content">
-
           <div class="col left-col">
             <div class="field">
               <label class="label">Title*</label>
@@ -63,7 +62,7 @@
               </div>
             </div>
 
-            <div class="field">
+            <div class="field-assign-to">
               <label class="label">Assigned to</label>
               <button type="button" class="select-assign-to">
                 <div class="assign-to-dropdown">
@@ -111,7 +110,7 @@
               </div>
             </div>
 
-            <div class="field">
+            <div class="field-category">
               <label class="label">Category*</label>
 
               <div class="category">
@@ -134,7 +133,7 @@
               </div>
             </div>
 
-            <div class="field">
+            <div class="field-subtasks">
               <label class="label">Subtasks</label>
               <div class="subtask-input">
                 <span class="out"><input type="text" name="subtask" (keydown.enter)="addSubtask(this.task)"
@@ -147,7 +146,7 @@
                   </span>
                 </span>
               </div>
-            </div>
+            
             <div class="subtasks-container">
               @for (subtask of this.task.subTasks; track subtask) {
               <div class="subtask-item">
@@ -162,11 +161,11 @@
                         (click)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
                   </span>
                 </p>
-                <p class="subtask-label" (click)="subtask.onEdit=true" [class.dNone]="subtask.onEdit">
+                <p class="subtask-label" (dblclick)="subtask.onEdit=true" [class.dNone]="subtask.onEdit">
                   &bull; {{ subtask.subtaskTitle }}
                   <span class="subtask-icons">
                     <p class="subtask-icon-left"><img src="assets/img/board/add-card/edit.svg" alt="close"
-                        (dblclick)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
+                        (lclick)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
                     <p class="subtask-icon-right"><img src="assets/img/board/add-card/delete.svg" alt="enter"
                         (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
                   </span>
@@ -174,15 +173,17 @@
               </div>
               }
             </div>
-
+          </div>
           </div>
         </div>
       </div>
+
       <div class="content-bottom">
-        <i class="check"></i>
+        <div><i class="check"></i></div>
         <div class="button-group">
-          <button type="button" (click)="onClose()" class="btn btn--secondary desktop-only">Cancel</button>
-          <button type="button" (click)="create()" class="btn btn--primary">Create Task</button>
+          <button type="button" (click)="onClose()" class="button-cancel">Cancel</button>
+          <button type="button" (click)="create()" class="button-create">Create Task</button>
+
         </div>
       </div>
     </form>
