@@ -18,26 +18,61 @@
             <div class="field-description">
               <label class="label">Description</label>
               <div class="textarea">
-                <textarea placeholder="Enter a Description" name="description" [(ngModel)]="this.task.description"></textarea>
+                <textarea placeholder="Enter a Description" name="description"
+                  [(ngModel)]="this.task.description"></textarea>
                 <span class="dots"></span>
               </div>
               <div class="hint hide-on-empty"></div>
             </div>
 
-            <div class="field-date">
-              <label class="label">Due date<span [style.color]="'red'">*</span></label>
-              <div class="input input--with-icon">
-                <input type="text" placeholder="dd/mm/yyyy" />
-                <span class="calendar"></span>
-              </div>
-              <div class="hint hint--error hide-on-empty"><span [style.color]="'red'">*This field is required</span>
-              </div>
-              
+
+            <div class="field-date"><span>Due date<span [style.color]="'red'">*</span></span><span class="out-date"><input class="in"
+                  name="dueDate" [(ngModel)]="task.dueDate" placeholder="dd/mm/yyyy" required> <img
+                  src="assets/img/board/calendar.svg" alt="Calendar" (click)="openCalendar('task')"
+                  class="calendar-icon"></span>
+
+              <span [class.dNone]="alowAddTaskCalender()"><span [style.color]="'red'">*Date must be today or later
+                  (dd/mm/yyyy)</span>
+              </span>
             </div>
+
+
+            <!-- Kalender Widget -->
+            @if (showCalendar) {
+            <div class="calendar-overlay" (click)="closeCalendar()">
+              <div class="calendar-widget" (click)="$event.stopPropagation()">
+                <div class="calendar-header">
+                  <button type="button" (click)="previousMonth()" class="nav-btn">‹</button>
+                  <span class="month-year">{{ getMonthName(currentMonth) }} {{ currentYear }}</span>
+                  <button type="button" (click)="nextMonth()" class="nav-btn">›</button>
+                </div>
+                <div class="calendar-grid">
+                  <div class="day-header">So</div>
+                  <div class="day-header">Mo</div>
+                  <div class="day-header">Di</div>
+                  <div class="day-header">Mi</div>
+                  <div class="day-header">Do</div>
+                  <div class="day-header">Fr</div>
+                  <div class="day-header">Sa</div>
+
+                  @for (day of getCalendarDays(); track $index) {
+                  @if (day === null) {
+                  <div class="calendar-day empty"></div>
+                  } @else {
+                  <div class="calendar-day" [class.past]="isDayInPast(day)"
+                    [class.today]="currentYear === today.getFullYear() && currentMonth === today.getMonth() && day === today.getDate()"
+                    (click)="onDayClick(day)">
+                    {{ day }}
+                  </div>
+                  }
+                  }
+                </div>
+                <button type="button" (click)="closeCalendar()" class="close-btn">Schließen</button>
+              </div>
+            </div>
+            }
           </div>
-
           <div class="divider-vert"></div>
-
           <div class="col right-col">
             <div class="field-priority">
               <label class="label">Priority</label>
@@ -169,7 +204,7 @@
                     &bull; {{ subtask.subtaskTitle }}
                     <span class="subtask-icons">
                       <p class="subtask-icon-left"><img src="assets/img/board/add-card/edit.svg" alt="close"
-                          (lclick)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
+                          (click)="editSubtask(subtask.subtaskTitle, subtaskInput.value, this.task)"></p>
                       <p class="subtask-icon-right"><img src="assets/img/board/add-card/delete.svg" alt="enter"
                           (click)="deleteSubtask(subtask.subtaskTitle, this.task)"></p>
                     </span>
