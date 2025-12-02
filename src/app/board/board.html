@@ -1,0 +1,38 @@
+<div class="board">
+    <app-board-header (addTaskToColumn)="openAddCardOverlay($event)" (searchTasks)="onSearchTasks($event)"></app-board-header>
+</div>
+
+<!-- Add-Card Overlay -->
+@if (showAddCardOverlay) {
+  <div class="overlay" (click)="closeAddCardOverlay()">
+    <div class="overlay-content" (click)="$event.stopPropagation()">
+      <app-add-card [selectedColumn]="selectedColumn" (closeOverlay)="closeAddCardOverlay()"></app-add-card>
+    </div>
+  </div>
+}
+
+<div class="task-table">
+
+    <div id="getTaskCollumnOne" cdkDropList [cdkDropListData]="todoTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of todoTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>
+
+    <div id="getTaskCollumnTwo" cdkDropList [cdkDropListData]="inProgressTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of inProgressTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>
+
+    <div id="getTaskCollumnThree" cdkDropList [cdkDropListData]="awaitFeedbackTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of awaitFeedbackTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>
+
+    <div id="getTaskCollumnFour" cdkDropList [cdkDropListData]="doneTasks" [cdkDropListConnectedTo]="collumns"
+        (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="noReturnPredicate" class="collumn">
+        @for (item of doneTasks; track item.dbid) {<div cdkDrag [cdkDragData]="item" 
+            (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" class="cell"><app-board-card
+                [card]=item></app-board-card></div>} </div>

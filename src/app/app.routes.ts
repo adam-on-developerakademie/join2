@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { crud } from './crud/crud';
+import { Tasktest } from './tasktest/tasktest';
 import { Contacts } from './contacts/contacts';
+import { Board } from './board/board';
+import { BoardCard } from './board/board-card/board-card';
 import { Login } from './login/login';
 import { SignUp } from './login/sign-up/sign-up';
 import { Intro } from './login/intro/intro';

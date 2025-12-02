@@ -1,0 +1,148 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.board {
+    padding-left: 232px;
+    padding-top: 96px;
+}
+
+.task-table {
+    // border: 1px solid blue;
+    max-width: calc(1440px);
+    width: calc(100% - 232px);
+    height: calc(100dvh - 100px - 232px);
+    flex: 1;
+    margin-left: 232px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-inline: 64px;
+    gap: 16px;
+}
+
+
+.collumn {
+    max-width: 244px;
+    min-height: 195px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+
+}
+
+.cell {
+    //border: 1px solid purple;
+    border-radius: 10px;
+    min-height: 48px;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    box-shadow:
+        0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 24px;
+    overflow: hidden;
+    rotate: 5deg;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    rotate: 5deg;
+}
+
+.example-box:last-child {
+    border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    rotate: 3deg;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Overlay Styles
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding-left: calc(232px / 2);
+}
+
+.overlay-content {
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-width: 1116px;
+    max-height: 870px;
+    width: 90%;
+    height: 80%;
+    overflow: none;
+    border-radius: 30px;
+}
+
+@media (max-width: 1350px) {
+    .board {
+        padding-left: 0px;
+        padding-top: 80px;
+    }
+
+    .task-table {
+        margin-left: 0px;
+        width: calc(100%);
+        height: calc(100dvh - 100px - 232px - 75px);
+    }
+
+    .overlay {
+        padding-left: 0px;
+
+        .overlay-content {
+            margin-bottom: 100px;
+        }
+    }
+}
