@@ -1,0 +1,493 @@
+.summary-page {
+  width: 100%;
+  padding: 120px 0 50px;
+  background: #f6f7f8;
+  box-sizing: border-box;
+}
+
+.summary-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.summary-header-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.summary-title-block {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 0 0 auto;
+}
+
+.summary-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 120%;
+  margin: 0;
+}
+
+.summary-title-divider {
+  width: 0;
+  height: 59px;
+  border-left: 3px solid #29abe2;
+}
+
+.summary-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 27px;
+  line-height: 32px;
+  color: #2a3647;
+  margin: 0;
+}
+
+.summary-greeting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  gap: 4px;
+  min-height: 260px;
+}
+
+.summary-greeting-line {
+  font-family: 'Inter', sans-serif;
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 120%;
+  margin: 0;
+  color: #2a3647;
+}
+
+.summary-greeting-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 120%;
+  margin: 0;
+  color: #29abe2;
+}
+
+.summary-main-grid {
+  margin-top: 48px;
+}
+
+.summary-content-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.summary-kpi-column {
+  max-width: 560px;
+}
+
+.summary-kpi-row {
+  display: flex;
+  gap: 32px;
+}
+
+.summary-kpi-row-top {
+  margin-bottom: 28px;
+}
+
+.summary-kpi-row-bottom {
+  margin-top: 28px;
+}
+
+.kpi-card {
+  background: #ffffff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kpi-card-rect {
+  width: 264px;
+  height: 168px;
+  padding: 38px 19px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.kpi-card-wide {
+  width: 560px;
+  height: 168px;
+  margin-top: 28px;
+  padding: 28px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-radius: 30px;
+}
+
+.kpi-card-square {
+  width: 168px;
+  height: 168px;
+  padding: 28px 0 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.kpi-icon {
+  width: 69px;
+  height: 69px;
+  border-radius: 50%;
+  background: #2a3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kpi-icon-dark {
+  background: #2a3647;
+}
+
+.kpi-icon-urgent {
+  background: #ff3d00;
+}
+
+.kpi-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.kpi-card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.kpi-number {
+  font-family: 'Inter', sans-serif;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1;
+  display: block;
+  color: #000000;
+}
+
+.kpi-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 120%;
+  color: #2a3647;
+}
+
+.kpi-label-multi {
+  text-align: center;
+}
+
+.kpi-urgency-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.kpi-urgency-number {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.kpi-divider-vertical {
+  height: 102px;
+  border-left: 2px solid #d1d1d1;
+}
+
+.kpi-urgency-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 13px;
+}
+
+.kpi-deadline-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 120%;
+  color: #2a3647;
+  display: block;
+}
+
+.kpi-deadline-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #2a3647;
+}
+
+/* [MYA NEW] Sicherheitsnetz gegen X-Overflow */
+.summary-page,
+.summary-layout {
+  overflow-x: hidden;
+}
+
+/* [MYA NEW] Tablet Layout (iPad Mini / Air) – wie Figma */
+@media (max-width: 1000px) and (min-width: 601px) {
+  .summary-content-row {
+    justify-content: center;
+  }
+
+  /* Greeting ausblenden – verhindert Text-Overflow */
+  .summary-greeting {
+    display: none;
+  }
+
+  /* KPI-Spalte sauber zentrieren */
+  .summary-kpi-column {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Header darf umbrechen */
+  .summary-title-block {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .summary-title,
+  .summary-subtitle {
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 600px) {
+  .summary-page {
+    padding: 80px 0 24px;
+    background: #f6f7f8;
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+  .summary-layout {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 16px 24px;
+    box-sizing: border-box;
+  }
+  .summary-title {
+    font-size: 36px;
+  }
+
+  .summary-subtitle {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .summary-title,
+  .summary-subtitle {
+    white-space: normal;
+    max-width: 100%;
+  }
+
+  .summary-title {
+    font-size: clamp(32px, 7vw, 36px);
+  }
+  .summary-subtitle {
+    font-size: clamp(14px, 3.6vw, 16px);
+  }
+
+  .summary-title-block {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+
+  .summary-greeting {
+    display: none;
+  }
+
+  .kpi-card-rect {
+    min-width: 0; /* verhindert Overflow durch Inhalte */
+  }
+
+  .summary-main-grid {
+    margin-top: 32px;
+  }
+
+  .summary-content-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .summary-kpi-column {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .summary-kpi-row-top,
+  .summary-kpi-row-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  .summary-kpi-row-top {
+    gap: 16px;
+  }
+
+  .summary-kpi-row-bottom {
+    gap: 12px;
+  }
+
+  .kpi-card {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 16px;
+    background: #ffffff;
+  }
+
+  .kpi-card-rect {
+    width: calc(50% - 8px);
+    height: 100px;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .kpi-card-wide {
+    width: 100%;
+    height: 100px;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  .kpi-card-square {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100px;
+    padding: 14px 4px 10px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .kpi-card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .kpi-number {
+    font-size: 32px;
+  }
+
+  .kpi-label {
+    font-size: 14px;
+    line-height: 1.2;
+    min-height: 32px;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .kpi-urgency-left {
+    gap: 12px;
+  }
+
+  .kpi-divider-vertical {
+    height: 48px;
+    border-left: 2px solid #d1d1d1;
+  }
+
+  .kpi-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .kpi-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  /* [MYA CHANGE] Deadline Typo mobile wie Figma */
+  .kpi-deadline-date {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  .kpi-deadline-label {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  /* [MYA CHANGE] Mobile Header 1:1 wie Figma */
+  .summary-header-row {
+    align-items: flex-start;
+  }
+
+  /* [MYA FIX] Mobile Header 1:1 wie Figma (Title oben, Subtitle drunter, Linie horizontal) */
+  .summary-title-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .summary-title {
+    font-size: 47px;
+    line-height: 1.1;
+  }
+
+  .summary-subtitle {
+    font-size: 20px;
+    line-height: 1.2;
+    order: 2;
+  }
+
+  .summary-title-divider {
+    order: 3;
+    width: 90px;
+    height: 0;
+    border-left: 0;
+    border-top: 3px solid #29abe2;
+    margin-top: 6px;
+  }
+}

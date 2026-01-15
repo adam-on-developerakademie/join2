@@ -1,0 +1,85 @@
+<main class="summary-page">
+  <div class="summary-layout">
+    <!-- MYA NEW: Nur Titel im Header -->
+    <section class="summary-header-row">
+      <div class="summary-title-block">
+        <h1 class="summary-title">Join 360</h1>
+        <div class="summary-title-divider"></div>
+        <p class="summary-subtitle">Key Metrics at a Glance</p>
+      </div>
+    </section>
+
+    <!-- MYA NEW: KPI-Spalte + Greeting in einer gemeinsamen Row -->
+    <section class="summary-main-grid">
+      <div class="summary-content-row">
+        <div class="summary-kpi-column">
+          <div class="summary-kpi-row summary-kpi-row-top">
+            <article class="kpi-card kpi-card-rect">
+              <div class="kpi-icon kpi-icon-dark">
+                <img src="assets/img/summary/pen.png" alt="Todo Icon" class="kpi-img" />
+              </div>
+              <div class="kpi-card-text">
+                <span class="kpi-number">{{ stats.todo }}</span>
+                <span class="kpi-label">To-do</span>
+              </div>
+            </article>
+
+            <article class="kpi-card kpi-card-rect">
+              <div class="kpi-icon kpi-icon-dark kpi-icon-check">
+                <img src="assets/img/summary/done.png" alt="Todo Icon" class="kpi-img" />
+              </div>
+
+              <div class="kpi-card-text">
+                <span class="kpi-number">{{ stats.done }}</span>
+                <span class="kpi-label">Done</span>
+              </div>
+            </article>
+          </div>
+
+          <article class="kpi-card kpi-card-wide">
+            <div class="kpi-urgency-left">
+              <div class="kpi-icon kpi-icon-urgent">
+                <img src="assets/img/summary/urgency.png" alt="Todo Icon" class="kpi-img" />
+              </div>
+
+              <div class="kpi-urgency-number">
+                <span class="kpi-number">{{ stats.urgent }}</span>
+                <span class="kpi-label">Urgent</span>
+              </div>
+            </div>
+
+            <div class="kpi-divider-vertical"></div>
+
+            <div class="kpi-urgency-right">
+              <span class="kpi-deadline-date">{{ stats.deadline }}</span>
+              <span class="kpi-deadline-label">Upcoming Deadline</span>
+            </div>
+          </article>
+
+          <div class="summary-kpi-row summary-kpi-row-bottom">
+            <article class="kpi-card kpi-card-square">
+              <span class="kpi-number">{{ stats.board }}</span>
+              <span class="kpi-label kpi-label-multi">Tasks in Board</span>
+            </article>
+
+            <article class="kpi-card kpi-card-square">
+              <span class="kpi-number">{{ stats.inProgress }}</span>
+              <span class="kpi-label kpi-label-multi">Tasks In Progress</span>
+            </article>
+
+            <article class="kpi-card kpi-card-square">
+              <span class="kpi-number">{{ stats.feedback }}</span>
+              <span class="kpi-label kpi-label-multi">Awaiting Feedback</span>
+            </article>
+          </div>
+        </div>
+
+        <!-- MYA NEW: Greeting rechts neben den Karten -->
+        <div class="summary-greeting">
+          <p class="summary-greeting-line">{{ getGreeting() }},</p>
+          <p class="summary-greeting-name">{{ stats.userName }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
