@@ -14,6 +14,7 @@
   justify-content: space-between;
   max-width: calc(var(--content-max-width, 1920px) - var(--sidebar-w, 232px));
   width: 100%;
+  margin: 0 auto;
   padding-left: 24px;
   padding-right: 24px;
 }
@@ -86,7 +87,7 @@
 }
 
 .user {
-  position: static;
+  position: relative;
 }
 
 .user-trigger {
@@ -97,6 +98,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.user-trigger:focus {
+  outline: none;
+}
+
+.user-trigger:focus-visible {
+  outline: none;
 }
 
 .circle {
@@ -117,7 +126,8 @@
 
 .submenu {
   position: absolute;
-  right: 24px;
+  left: auto;
+  right: 50%;
   top: 100%;
   display: flex;
   flex-direction: column;
@@ -190,6 +200,7 @@
 
   .submenu {
     min-height: 212px;
+    left: auto;
     right: 16px;
   }
 
