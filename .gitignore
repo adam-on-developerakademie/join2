@@ -52,3 +52,6 @@ src/environments/*.ts
 
 #Privat
 /src/app/legal_privat
+
+# Local history-rewrite mapping
+/replacements.txt
