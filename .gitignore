@@ -49,3 +49,6 @@ Thumbs.db
 
 #environments
 src/environments/*.ts
+
+#Privat
+/src/app/legal_privat
